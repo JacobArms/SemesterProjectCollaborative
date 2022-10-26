@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".GameEndActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="210dp"
+        android:layout_height="355dp"
+        app:srcCompat="@drawable/aiaicheer"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="188dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
