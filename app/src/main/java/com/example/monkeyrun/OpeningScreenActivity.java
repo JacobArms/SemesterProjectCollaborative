@@ -10,7 +10,7 @@ import android.widget.ImageView;
 public class OpeningScreenActivity extends AppCompatActivity {
 
     public void imageClick(View view){
-        //Grabs the image of Dr Heinz
+        //Grabs the image of AiAi
         ImageView imageView = (ImageView) findViewById(R.id.AiAi);
         //Sets the xFrom, xTo, yFrom, and yTo
         TranslateAnimation animation = new TranslateAnimation(-160.0f,160.0f, 0.0f, 0.0f);
