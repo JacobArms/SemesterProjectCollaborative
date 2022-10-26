@@ -8,9 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="Flax" hex="f3e28f" r="243" g="226" b="143" />
-    <color name="Beige" hex="cbac78" r="203" g="172" b="120" />
-    <color name="Bronze" hex="a27661" r="162" g="118" b="97" />
-    <color name="Copper" hex="c47b5e" r="196" g="123" b="94" />
-    <color name="Burnt" hex="e27d59" r="226" g="125" b="89" />
+
+    <color name="Flax">#f3e28f</color>
+    <color name="Beige">#cbac78</color>
+    <color name="Bronze">#a27661</color>
+    <color name="Copper">#c47b5e</color>
+    <color name="Burnt">#e27d59</color>
+    
 </resources>
