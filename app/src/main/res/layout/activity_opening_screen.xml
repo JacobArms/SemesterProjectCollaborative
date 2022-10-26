@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Beige"
     tools:context=".OpeningScreenActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/BlackCircle"
         android:layout_width="364dp"
         android:layout_height="637dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,19 +19,19 @@
         app:srcCompat="@drawable/black_circle" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/AiAi"
         android:layout_width="246dp"
         android:layout_height="315dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/BlackCircle"
         app:layout_constraintVertical_bias="0.436"
         app:srcCompat="@drawable/aiaimain" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/slackey"
@@ -44,7 +45,7 @@
         app:layout_constraintVertical_bias="0.225" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/Highscore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/slackey"
