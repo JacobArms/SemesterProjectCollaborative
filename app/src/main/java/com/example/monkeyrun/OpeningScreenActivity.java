@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.ViewAnimator;
 
 public class OpeningScreenActivity extends AppCompatActivity {
 
@@ -16,7 +18,7 @@ public class OpeningScreenActivity extends AppCompatActivity {
 
         if(imageView.getY()>-1479){
             //Sets the xFrom, xTo, yFrom, and yTo
-            TranslateAnimation animation = new TranslateAnimation(0f,0f, 0f, -1480.0f);
+            Animation animation = new ViewAnimator(1,2);
             animation.setDuration(800);    //animation duration, impacts the speed of the animation as well
             animation.setRepeatCount(0);    //Sets the repeat count
             animation.setRepeatMode(0);     //Repeat animation from (left to right, right to left)
