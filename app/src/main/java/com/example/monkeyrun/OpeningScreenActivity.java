@@ -1,7 +1,9 @@
 package com.example.monkeyrun;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -10,6 +12,9 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class OpeningScreenActivity extends AppCompatActivity {
 
@@ -27,6 +32,7 @@ public class OpeningScreenActivity extends AppCompatActivity {
 //            imageView.setY(-1480);
 //        }
 //    }
+    Timer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +70,19 @@ public class OpeningScreenActivity extends AppCompatActivity {
                         getApplicationContext(),
                         R.anim.slide_up
                 ));
+
+
             }
         });
-        
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(OpeningScreenActivity.this, InGameActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 2000);
         
         
         
