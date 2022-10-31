@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.ViewAnimator;
 
 public class OpeningScreenActivity extends AppCompatActivity {
@@ -32,15 +33,44 @@ public class OpeningScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_opening_screen);
 
         final ImageView AiAi = findViewById(R.id.AiAi);
-
-        findViewById(R.id.playButton).setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
+        final TextView title = findViewById(R.id.Title);
+        final TextView Highscore = findViewById(R.id.Highscore);
+        final ImageView BlackCircle = findViewById(R.id.BlackCircle);
+        final TextView PlayButton = findViewById(R.id.playButton);
+        
+        
+        findViewById(R.id.playButton).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
                 AiAi.startAnimation(AnimationUtils.loadAnimation(
                         getApplicationContext(),
                         R.anim.slide_up
                 ));
+
+                title.startAnimation(AnimationUtils.loadAnimation(
+                        getApplicationContext(),
+                        R.anim.slide_up
+                ));
+
+                Highscore.startAnimation(AnimationUtils.loadAnimation(
+                        getApplicationContext(),
+                        R.anim.slide_up
+                ));
+
+                BlackCircle.startAnimation(AnimationUtils.loadAnimation(
+                        getApplicationContext(),
+                        R.anim.slide_up
+                ));
+                PlayButton.startAnimation(AnimationUtils.loadAnimation(
+                        getApplicationContext(),
+                        R.anim.slide_up
+                ));
             }
-        }
+        });
+        
+        
+        
+        
+        
     }
 
 }
