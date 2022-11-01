@@ -78,15 +78,18 @@ public class OpeningScreenActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(OpeningScreenActivity.this, InGameActivity.class);
+                Intent intent = new Intent(OpeningScreenActivity.this, GameActivity.class);
                 startActivity(intent);
                 finish();
             }
         }, 2000);
         
-        
-        
-        
-    }
+        //below code will switch to the game screen but needs proper timer so it doesnt overlap animation
+//        findViewById(R.id.playButton).setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View view) {
+//                startActivity(new Intent(OpeningScreenActivity.this, GameActivity.class));
+//            }
+//        });
+//    }
 
 }

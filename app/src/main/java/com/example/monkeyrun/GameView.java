@@ -10,6 +10,7 @@ public class GameView extends SurfaceView implements Runnable{
     private Thread thread;
     private Boolean isPlaying;
     private int screenX, screenY;
+    private float screenRatioX, screenRatioY;
     private Paint paint;
     private Background background1, background2;
 
@@ -18,7 +19,8 @@ public class GameView extends SurfaceView implements Runnable{
 
         this.screenX=screenX;
         this.screenY=screenY;
-
+        screenRatioX = 1920f / screenX;
+        screenRatioY = 1080f/ screenY;
         background1= new Background(screenX, screenY, getResources());
         background2= new Background(screenX, screenY, getResources());
         background2.y = screenX;
@@ -37,8 +39,8 @@ public class GameView extends SurfaceView implements Runnable{
 
     //update position of drawables
     private void update(){
-        background1.y-= 10;
-        background2.y-= 10;
+        background1.y+= 10;
+        background2.y+= 10;
 
         if(background1.y+ background1.background.getHeight() < 0){
             background1.y = screenY;
