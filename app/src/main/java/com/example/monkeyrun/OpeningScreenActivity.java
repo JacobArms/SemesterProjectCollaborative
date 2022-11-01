@@ -47,42 +47,49 @@ public class OpeningScreenActivity extends AppCompatActivity {
 
         findViewById(R.id.playButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                //Moves AiAi up the screen to disappear before the game starts
                 AiAi.startAnimation(AnimationUtils.loadAnimation(
                         getApplicationContext(),
                         R.anim.slide_up
                 ));
 
+                //Moves the title up the screen to disappear before the game starts
                 title.startAnimation(AnimationUtils.loadAnimation(
                         getApplicationContext(),
                         R.anim.slide_up
                 ));
 
+                //Moves the high score up the screen to disappear before the game starts
                 Highscore.startAnimation(AnimationUtils.loadAnimation(
                         getApplicationContext(),
                         R.anim.slide_up
                 ));
 
+                //Moves the black circle up the screen to disappear before the game starts
                 BlackCircle.startAnimation(AnimationUtils.loadAnimation(
                         getApplicationContext(),
                         R.anim.slide_up
                 ));
+
+                //Moves AiAi up the screen to disappear before the game starts
                 PlayButton.startAnimation(AnimationUtils.loadAnimation(
                         getApplicationContext(),
                         R.anim.slide_up
                 ));
 
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(OpeningScreenActivity.this, GameActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, 800);
 
             }
         });
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(OpeningScreenActivity.this, GameActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }, 2000);
+
 
         //below code will switch to the game screen but needs proper timer so it doesnt overlap animation
 //        findViewById(R.id.playButton).setOnClickListener(new View.OnClickListener(){

@@ -69,7 +69,7 @@ public class GameView extends SurfaceView implements Runnable{
     }
 
 
-    //this allows the code to resume it function incase it gets paused
+    //this allows the code to resume it function in case it gets paused
     public void resume() {
         isPlaying = true;
         thread = new Thread (this);
