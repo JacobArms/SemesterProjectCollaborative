@@ -43,8 +43,8 @@ public class OpeningScreenActivity extends AppCompatActivity {
         final TextView Highscore = findViewById(R.id.Highscore);
         final ImageView BlackCircle = findViewById(R.id.BlackCircle);
         final TextView PlayButton = findViewById(R.id.playButton);
-        
-        
+
+
         findViewById(R.id.playButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 AiAi.startAnimation(AnimationUtils.loadAnimation(
@@ -83,7 +83,7 @@ public class OpeningScreenActivity extends AppCompatActivity {
                 finish();
             }
         }, 2000);
-        
+
         //below code will switch to the game screen but needs proper timer so it doesnt overlap animation
 //        findViewById(R.id.playButton).setOnClickListener(new View.OnClickListener(){
 //            public void onClick(View view) {
@@ -91,5 +91,5 @@ public class OpeningScreenActivity extends AppCompatActivity {
 //            }
 //        });
 //    }
-
+    }
 }
