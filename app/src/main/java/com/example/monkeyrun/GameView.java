@@ -39,18 +39,21 @@ public class GameView extends SurfaceView implements Runnable{
 
     //update position of drawables
     private void update(){
-        background1.y+= 10;
-        background2.y+= 10;
+        background1.y+= 10*screenRatioY;
+        background2.y += 10 * screenRatioY;
 
-        if(background1.y+ background1.background.getHeight() < 0){
-            background1.y = screenY;
+        if(background1.y >= screenY){
+            background1.y = -screenY;
+        }
+        if(background2.y >= screenY){
+            background2.y = -screenY;
         }
     }
     //draws new position of drawables
     private void draw(){
         if (getHolder().getSurface().isValid()){
             Canvas canvas = getHolder().lockCanvas();
-            canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
+//            canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
             canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
 
             getHolder().unlockCanvasAndPost(canvas);
@@ -66,14 +69,14 @@ public class GameView extends SurfaceView implements Runnable{
     }
 
 
+    //this allows the code to resume it function incase it gets paused
     public void resume() {
-
         isPlaying = true;
         thread = new Thread (this);
         thread.start();
     }
 
-
+    //this pauses the game loop if needed
     public void pause() {
         try {
             isPlaying = false;

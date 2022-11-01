@@ -90,6 +90,5 @@ public class OpeningScreenActivity extends AppCompatActivity {
 //                startActivity(new Intent(OpeningScreenActivity.this, GameActivity.class));
 //            }
 //        });
-//    }
     }
 }
