@@ -39,14 +39,15 @@ public class GameView extends SurfaceView implements Runnable{
 
     //update position of drawables
     private void update(){
-        background1.y+= 10*screenRatioY;
-        background2.y += 10 * screenRatioY;
+        float speed = 20;
+        background1.y += speed;
+        background2.y += speed;
 
         if(background1.y >= screenY){
             background1.y = -screenY;
         }
-        if(background2.y >= screenY){
-            background2.y = -screenY;
+        if(background2.y-3250 >= screenY){
+            background2.y = background2.y -screenY*2 ;
         }
     }
     //draws new position of drawables
@@ -54,7 +55,7 @@ public class GameView extends SurfaceView implements Runnable{
         if (getHolder().getSurface().isValid()){
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
-//            canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
+            canvas.drawBitmap(background2.background, background2.x, background2.y-3250, paint);
 
             getHolder().unlockCanvasAndPost(canvas);
         }
