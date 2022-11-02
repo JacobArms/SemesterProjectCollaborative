@@ -43,6 +43,7 @@ public class OpeningScreenActivity extends AppCompatActivity {
         final TextView Highscore = findViewById(R.id.Highscore);
         final ImageView BlackCircle = findViewById(R.id.BlackCircle);
         final TextView PlayButton = findViewById(R.id.playButton);
+        final ImageView settingsButton = findViewById(R.id.settingsButton);
 
 
         findViewById(R.id.playButton).setOnClickListener(new View.OnClickListener() {
@@ -71,8 +72,14 @@ public class OpeningScreenActivity extends AppCompatActivity {
                         R.anim.slide_up
                 ));
 
-                //Moves AiAi up the screen to disappear before the game starts
+                //Moves the play button up the screen to disappear before the game starts
                 PlayButton.startAnimation(AnimationUtils.loadAnimation(
+                        getApplicationContext(),
+                        R.anim.slide_up
+                ));
+
+                //Moves the settings button up the screen to disappear before the game starts
+                settingsButton.startAnimation(AnimationUtils.loadAnimation(
                         getApplicationContext(),
                         R.anim.slide_up
                 ));
