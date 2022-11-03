@@ -13,6 +13,7 @@ public class GameView extends SurfaceView implements Runnable{
     private float screenRatioX, screenRatioY;
     private Paint paint;
     private Background background1, background2;
+    private Aiai monke;
 
     public GameView(Context context, int screenX, int screenY) {
         super(context);
@@ -58,6 +59,7 @@ public class GameView extends SurfaceView implements Runnable{
             canvas.drawBitmap(background2.background, background2.x, background2.y-3250, paint);
 
             getHolder().unlockCanvasAndPost(canvas);
+            
         }
     }
     //waiting code (60fps)
