@@ -37,12 +37,7 @@ public class OpeningScreenActivity extends AppCompatActivity {
     Timer timer;
     ListPopupWindow listPopupWindow;
 
-    final ImageView AiAi = findViewById(R.id.AiAi);
-    final TextView title = findViewById(R.id.Title);
-    final TextView Highscore = findViewById(R.id.Highscore);
-    final ImageView BlackCircle = findViewById(R.id.BlackCircle);
-    final TextView PlayButton = findViewById(R.id.playButton);
-    final ImageView settingsButton = findViewById(R.id.settingsButton);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +45,12 @@ public class OpeningScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_opening_screen);
 
 
-
+        final ImageView AiAi = findViewById(R.id.AiAi);
+        final TextView title = findViewById(R.id.Title);
+        final TextView Highscore = findViewById(R.id.Highscore);
+        final ImageView BlackCircle = findViewById(R.id.BlackCircle);
+        final TextView PlayButton = findViewById(R.id.playButton);
+        final ImageView settingsButton = findViewById(R.id.settingsButton);
 
         findViewById(R.id.playButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
