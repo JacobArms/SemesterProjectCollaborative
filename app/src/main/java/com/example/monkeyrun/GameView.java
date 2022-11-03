@@ -41,7 +41,7 @@ public class GameView extends SurfaceView implements Runnable{
 
     //update position of drawables
     private void update(){
-        float speed = 20;
+        float speed = 25;
         background1.y += speed;
         background2.y += speed;
 
