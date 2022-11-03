@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,31 +47,34 @@ public class ListPopUpWindowAdapter extends BaseAdapter {
         if(convertView == null){
             holder = new ViewHolder();
             convertView = layoutInflater.inflate(R.layout.custom_layout_settings, null);
-            holder.tvTitle = (TextView) convertView.findViewById(R.id.text_title);
-            holder.btnDelete = (Button) convertView.findViewById(R.id.button_delete);
+            holder.musicTitle = (TextView) convertView.findViewById(R.id.musicText);
+            holder.soundTitle = (TextView) convertView.findViewById(R.id.soundText);
+            holder.exitButton = (ImageView) convertView.findViewById(R.id.exitButton);
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
         }
 
         // bind data
-        holder.tvTitle.setText(getItem(position));
-        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+        holder.soundTitle.setText(getItem(position));
+        holder.musicTitle.setText(getItem(position));
+        holder.exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickDeleteButtonListener.onClickDeleteButton(position);
+                clickDeleteButtonListener.onClickExitButton(position);
             }
         });
         return convertView;
     }
 
     public class ViewHolder{
-        private TextView tvTitle;
-        private Button btnDelete;
+        private TextView soundTitle;
+        private TextView musicTitle;
+        private ImageView exitButton;
     }
 
     // interface to return callback to activity
     public interface OnClickDeleteButtonListener{
-        void onClickDeleteButton(int position);
+        void onClickExitButton(int position);
     }
 }

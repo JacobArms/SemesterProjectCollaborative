@@ -4,7 +4,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.Animation;
@@ -39,14 +41,16 @@ public class OpeningScreenActivity extends AppCompatActivity {
 //    }
     Timer timer;
     ListPopupWindow listPopupWindow;
+    MediaPlayer mp;
+    MediaPlayer mpGame;
 //    ImageView settingsButton = findViewById(R.id.settingsButton);
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening_screen);
-
+        mp = MediaPlayer.create(this,R.raw.monkey_run_lobby_music);
+        mpGame = MediaPlayer.create(this,R.raw.monkey_run_game_music);
+        mp.start();
 
         final ImageView AiAi = findViewById(R.id.AiAi);
         final TextView title = findViewById(R.id.Title);
@@ -100,6 +104,8 @@ public class OpeningScreenActivity extends AppCompatActivity {
                         Intent intent = new Intent(OpeningScreenActivity.this, GameActivity.class);
                         startActivity(intent);
                         finish();
+                        mp.stop();
+                        mpGame.start();
                     }
                 }, 800);
 
@@ -126,17 +132,14 @@ public class OpeningScreenActivity extends AppCompatActivity {
         final ListPopupWindow listPopupWindow = new ListPopupWindow(this);
         listPopupWindow.setWidth(600);
         List<String> sampleData = new ArrayList<>();
-        sampleData.add("A");
-        sampleData.add("B");
-        sampleData.add("CCCCCCCCCCCCCC");
-        sampleData.add("D");
-        sampleData.add("EEEEEEEEE");
+        sampleData.add("");
+
 
         listPopupWindow.setAnchorView(anchorView);
         ListPopUpWindowAdapter listPopupWindowAdapter = new ListPopUpWindowAdapter(this, sampleData, new ListPopUpWindowAdapter.OnClickDeleteButtonListener() {
             @Override
-            public void onClickDeleteButton(int position) {
-                Toast.makeText(OpeningScreenActivity.this, "Click delete " + position, Toast.LENGTH_SHORT).show();
+            public void onClickExitButton(int position) {
+                Toast.makeText(OpeningScreenActivity.this, "Settings Saved", Toast.LENGTH_SHORT).show();
                 listPopupWindow.dismiss();
             }
         });

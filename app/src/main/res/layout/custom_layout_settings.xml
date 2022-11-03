@@ -1,22 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#e4e4e4"
-    android:paddingTop="1dp"
-    android:orientation="horizontal">
+    android:layout_height="match_parent"
+    tools:context=".OpeningScreenActivity">
 
-    <TextView
-        android:id="@+id/text_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/button_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete" />
+    <GridLayout
+        android:id="@+id/favorites_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="4"
+        android:rowCount="5"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-80dp">
+        <!--<?xml version="1.0" encoding="utf-8"?>-->
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--    android:layout_width="match_parent"-->
+        <!--    android:layout_height="wrap_content"-->
+        <!--    android:background="#e4e4e4"-->
+        <!--    android:paddingTop="100dp"-->
+        <!--    android:orientation="horizontal">-->
 
-</LinearLayout>
+        <!--    <SeekBar-->
+        <!--        android:id="@+id/musicScroll"-->
+        <!--        android:layout_width="0dp"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_weight="1" />-->
+
+        <!--    <SeekBar-->
+        <!--        android:id="@+id/soundScroll"-->
+        <!--        android:layout_width="0dp"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_weight="1" />-->
+
+        <!--</LinearLayout>-->
+
+        <TextView
+            android:id="@+id/musicText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:text="Music" />
+
+        <TextView
+            android:id="@+id/soundText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:text="Sound" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="164dp"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="2" />
+
+        <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="163dp"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="2" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="24dp"
+            android:layout_height="25dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            app:srcCompat="@drawable/music_note" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="23dp"
+            android:layout_height="21dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            app:srcCompat="@drawable/volume_icon" />
+
+        <ImageView
+            android:id="@+id/exitButton"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_row="0"
+            android:layout_column="3"
+            app:srcCompat="@drawable/black_x" />
+
+    </GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
