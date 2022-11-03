@@ -3,7 +3,12 @@ package com.example.monkeyrun;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.SurfaceView;
+import android.view.View;
+
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 public class GameView extends SurfaceView implements Runnable{
     //12:00 into video
@@ -90,4 +95,5 @@ public class GameView extends SurfaceView implements Runnable{
             e.printStackTrace();
         }
     }
+
 }
