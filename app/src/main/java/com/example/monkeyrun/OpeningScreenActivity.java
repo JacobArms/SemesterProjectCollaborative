@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.ListPopupWindow;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
 
@@ -33,17 +35,21 @@ public class OpeningScreenActivity extends AppCompatActivity {
 //        }
 //    }
     Timer timer;
+    ListPopupWindow listPopupWindow;
+
+    final ImageView AiAi = findViewById(R.id.AiAi);
+    final TextView title = findViewById(R.id.Title);
+    final TextView Highscore = findViewById(R.id.Highscore);
+    final ImageView BlackCircle = findViewById(R.id.BlackCircle);
+    final TextView PlayButton = findViewById(R.id.playButton);
+    final ImageView settingsButton = findViewById(R.id.settingsButton);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening_screen);
 
-        final ImageView AiAi = findViewById(R.id.AiAi);
-        final TextView title = findViewById(R.id.Title);
-        final TextView Highscore = findViewById(R.id.Highscore);
-        final ImageView BlackCircle = findViewById(R.id.BlackCircle);
-        final TextView PlayButton = findViewById(R.id.playButton);
-        final ImageView settingsButton = findViewById(R.id.settingsButton);
+
 
 
         findViewById(R.id.playButton).setOnClickListener(new View.OnClickListener() {
@@ -97,6 +103,16 @@ public class OpeningScreenActivity extends AppCompatActivity {
             }
         });
 
+//        setUpListpopupWindow();
+//        settingsButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                listPopupWindow.show();
+//            }
+//        });
+
+
 
         //below code will switch to the game screen but needs proper timer so it doesnt overlap animation
 //        findViewById(R.id.playButton).setOnClickListener(new View.OnClickListener(){
@@ -105,4 +121,19 @@ public class OpeningScreenActivity extends AppCompatActivity {
 //            }
 //        });
     }
+//    public void setUpListpopupWindow() {
+//        listPopupWindow = new ListPopupWindow(OpeningScreenActivity.this);
+//        listPopupWindow.setAnchorView(settingsButton);
+//        DisplayMetrics metrics = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//        listPopupWindow.setWidth(metrics.widthPixels); //sets width as per the screen.
+//        listPopupWindow.setHeight(ListPopupWindow.WRAP_CONTENT);
+//        listPopupWindow.setModal(true);
+//
+//        View filterLayout = getLayoutInflater().inflate(R.layout.custom_layout_settings, null);
+//
+//        listPopupWindow.setPromptView(filterLayout);
+//    }
+
+
 }

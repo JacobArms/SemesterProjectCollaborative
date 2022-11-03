@@ -61,7 +61,7 @@ public class GameView extends SurfaceView implements Runnable{
 
             canvas.drawBitmap(aiai.getFrame(), aiai.x, aiai.y, paint);
             getHolder().unlockCanvasAndPost(canvas);
-            
+
         }
     }
     //waiting code (60fps)
