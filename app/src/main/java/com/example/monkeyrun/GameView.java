@@ -13,7 +13,7 @@ public class GameView extends SurfaceView implements Runnable{
     private float screenRatioX, screenRatioY;
     private Paint paint;
     private Background background1, background2;
-    private Aiai monke;
+    private Aiai aiai;
 
     public GameView(Context context, int screenX, int screenY) {
         super(context);
@@ -24,6 +24,7 @@ public class GameView extends SurfaceView implements Runnable{
         screenRatioY = 1080f/ screenY;
         background1= new Background(screenX, screenY, getResources());
         background2= new Background(screenX, screenY, getResources());
+        aiai = new Aiai(screenX, screenY, getResources());
         background2.y = screenX;
         paint = new Paint();
     }
@@ -58,6 +59,7 @@ public class GameView extends SurfaceView implements Runnable{
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
             canvas.drawBitmap(background2.background, background2.x, background2.y-3250, paint);
 
+            canvas.drawBitmap(aiai.getFrame(), aiai.x, aiai.y, paint);
             getHolder().unlockCanvasAndPost(canvas);
             
         }

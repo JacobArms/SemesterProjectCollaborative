@@ -11,7 +11,7 @@ public class Aiai {
     int x, y, width, height, frameNum = 0;
     Bitmap aiai1, aiai2, aiai3, aiai4, aiai5, aiai6;
 
-    Aiai (int screenX, Resources res){
+    Aiai (int screenX, int screenY, Resources res){
         aiai1 = BitmapFactory.decodeResource(res, R.drawable.aia_f_one);
         aiai2 = BitmapFactory.decodeResource(res, R.drawable.aia_f_two);
         aiai3 = BitmapFactory.decodeResource(res, R.drawable.aia_f_three);
@@ -29,7 +29,8 @@ public class Aiai {
         aiai5 = Bitmap.createScaledBitmap(aiai5, width, height, false);
         aiai6 = Bitmap.createScaledBitmap(aiai6, width, height, false);
 
-        x = screenX/2;
+        x = screenX/2 - aiai1.getWidth()/2;
+        y = screenY - aiai1.getHeight()*2 - 100;
     }
 
     Bitmap getFrame (){
