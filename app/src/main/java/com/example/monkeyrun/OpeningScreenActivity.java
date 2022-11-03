@@ -13,8 +13,11 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.ListPopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewAnimator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -36,7 +39,7 @@ public class OpeningScreenActivity extends AppCompatActivity {
 //    }
     Timer timer;
     ListPopupWindow listPopupWindow;
-
+//    ImageView settingsButton = findViewById(R.id.settingsButton);
 
 
     @Override
@@ -103,14 +106,12 @@ public class OpeningScreenActivity extends AppCompatActivity {
             }
         });
 
-//        setUpListpopupWindow();
-//        settingsButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                listPopupWindow.show();
-//            }
-//        });
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showListPopupWindow(v);
+            }
+        });
 
 
 
@@ -121,19 +122,27 @@ public class OpeningScreenActivity extends AppCompatActivity {
 //            }
 //        });
     }
-//    public void setUpListpopupWindow() {
-//        listPopupWindow = new ListPopupWindow(OpeningScreenActivity.this);
-//        listPopupWindow.setAnchorView(settingsButton);
-//        DisplayMetrics metrics = new DisplayMetrics();
-//        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-//        listPopupWindow.setWidth(metrics.widthPixels); //sets width as per the screen.
-//        listPopupWindow.setHeight(ListPopupWindow.WRAP_CONTENT);
-//        listPopupWindow.setModal(true);
-//
-//        View filterLayout = getLayoutInflater().inflate(R.layout.custom_layout_settings, null);
-//
-//        listPopupWindow.setPromptView(filterLayout);
-//    }
+    private void showListPopupWindow(View anchorView) {
+        final ListPopupWindow listPopupWindow = new ListPopupWindow(this);
+        listPopupWindow.setWidth(600);
+        List<String> sampleData = new ArrayList<>();
+        sampleData.add("A");
+        sampleData.add("B");
+        sampleData.add("CCCCCCCCCCCCCC");
+        sampleData.add("D");
+        sampleData.add("EEEEEEEEE");
+
+        listPopupWindow.setAnchorView(anchorView);
+        ListPopUpWindowAdapter listPopupWindowAdapter = new ListPopUpWindowAdapter(this, sampleData, new ListPopUpWindowAdapter.OnClickDeleteButtonListener() {
+            @Override
+            public void onClickDeleteButton(int position) {
+                Toast.makeText(OpeningScreenActivity.this, "Click delete " + position, Toast.LENGTH_SHORT).show();
+                listPopupWindow.dismiss();
+            }
+        });
+        listPopupWindow.setAdapter(listPopupWindowAdapter);
+        listPopupWindow.show();
+    }
 
 
 }
