@@ -1,7 +1,6 @@
 package com.example.monkeyrun;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.widget.SeekBar;
@@ -9,6 +8,7 @@ import android.widget.SeekBar;
 public class customSettings extends AppCompatActivity {
     SeekBar musicSeekbar,soundSeekbar;
     AudioManager audioManager;
+    public int volumeMusic, volumeSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
