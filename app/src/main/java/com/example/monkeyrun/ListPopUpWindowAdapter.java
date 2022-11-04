@@ -46,7 +46,7 @@ public class ListPopUpWindowAdapter extends BaseAdapter {
         ViewHolder holder;
         if(convertView == null){
             holder = new ViewHolder();
-            convertView = layoutInflater.inflate(R.layout.custom_layout_settings, null);
+            convertView = layoutInflater.inflate(R.layout.activity_custom_settings, null);
             holder.musicTitle = (TextView) convertView.findViewById(R.id.musicText);
             holder.soundTitle = (TextView) convertView.findViewById(R.id.soundText);
             holder.exitButton = (ImageView) convertView.findViewById(R.id.exitButton);

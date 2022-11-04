@@ -15,27 +15,6 @@
         android:rowCount="5"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-80dp">
-        <!--<?xml version="1.0" encoding="utf-8"?>-->
-        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--    android:layout_width="match_parent"-->
-        <!--    android:layout_height="wrap_content"-->
-        <!--    android:background="#e4e4e4"-->
-        <!--    android:paddingTop="100dp"-->
-        <!--    android:orientation="horizontal">-->
-
-        <!--    <SeekBar-->
-        <!--        android:id="@+id/musicScroll"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_weight="1" />-->
-
-        <!--    <SeekBar-->
-        <!--        android:id="@+id/soundScroll"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_weight="1" />-->
-
-        <!--</LinearLayout>-->
 
         <TextView
             android:id="@+id/musicText"
@@ -54,14 +33,14 @@
             android:text="Sound" />
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/musicSeekbar"
             android:layout_width="164dp"
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="2" />
 
         <SeekBar
-            android:id="@+id/seekBar2"
+            android:id="@+id/soundSeekbar"
             android:layout_width="163dp"
             android:layout_height="wrap_content"
             android:layout_row="1"

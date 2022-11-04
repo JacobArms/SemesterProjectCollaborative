@@ -4,6 +4,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,35 +24,35 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class OpeningScreenActivity extends AppCompatActivity {
+import android.content.res.AssetFileDescriptor;
+import android.widget.SeekBar;
 
-//    public void imageClick(View view){
-//        //Grabs the image of AiAi
-//        ImageView imageView = (ImageView) findViewById(R.id.AiAi);
-//
-//        //Sets the xFrom, xTo, yFrom, and yTo
-//        TranslateAnimation animation = new TranslateAnimation(0.0f,0.0f, 0.0f, -1481.0f);
-//        animation.setDuration(1000);    //animation duration, impacts the speed of the animation as well
-//        animation.setRepeatCount(0);    //Sets the repeat count
-//        animation.setRepeatMode(0);     //Repeat animation from (left to right, right to left)
-//        imageView.startAnimation(animation);    //Starts the animation of the image on the page
-//        while(imageView.getY()<=-1481) {
-//            imageView.setY(-1480);
-//        }
-//    }
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+
+public class OpeningScreenActivity extends AppCompatActivity{
+
     Timer timer;
     ListPopupWindow listPopupWindow;
     MediaPlayer mp;
     MediaPlayer mpGame;
-//    ImageView settingsButton = findViewById(R.id.settingsButton);
+    SeekBar musicSeekbar,soundSeekbar;
+    boolean wasPlaying = false;
+    AudioManager audioManager;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening_screen);
+
+        //Creates the background music for the game
         mp = MediaPlayer.create(this,R.raw.monkey_run_lobby_music);
         mpGame = MediaPlayer.create(this,R.raw.monkey_run_game_music);
         mp.start();
 
+        //Movement of the objects off of screen when the "play" button is hit
         final ImageView AiAi = findViewById(R.id.AiAi);
         final TextView title = findViewById(R.id.Title);
         final TextView Highscore = findViewById(R.id.Highscore);
@@ -127,6 +128,8 @@ public class OpeningScreenActivity extends AppCompatActivity {
 //                startActivity(new Intent(OpeningScreenActivity.this, GameActivity.class));
 //            }
 //        });
+
+
     }
     private void showListPopupWindow(View anchorView) {
         final ListPopupWindow listPopupWindow = new ListPopupWindow(this);
