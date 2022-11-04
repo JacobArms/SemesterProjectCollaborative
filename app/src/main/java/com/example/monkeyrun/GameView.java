@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 public class GameView extends SurfaceView implements Runnable{
     //12:00 into video
+
     private Thread thread;
     private Boolean isPlaying;
     private int screenX, screenY;
@@ -20,9 +21,11 @@ public class GameView extends SurfaceView implements Runnable{
     private Background background1, background2;
     private Aiai aiai;
 
+
     public GameView(Context context, int screenX, int screenY) {
         super(context);
-
+        SurfaceView surfaceView = this;
+        SwipeListener swipeListener = new SwipeListener(surfaceView, aiai, screenX);
         this.screenX=screenX;
         this.screenY=screenY;
         screenRatioX = 1920f / screenX;
@@ -95,5 +98,4 @@ public class GameView extends SurfaceView implements Runnable{
             e.printStackTrace();
         }
     }
-
 }
