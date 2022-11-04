@@ -40,18 +40,15 @@ public class OpeningScreenActivity extends AppCompatActivity{
     boolean wasPlaying = false;
     AudioManager audioManager;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening_screen);
-
         //Creates the background music for the game
         mp = MediaPlayer.create(this,R.raw.monkey_run_lobby_music);
         mpGame = MediaPlayer.create(this,R.raw.monkey_run_game_music);
         mp.start();
-
+        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         //Movement of the objects off of screen when the "play" button is hit
         final ImageView AiAi = findViewById(R.id.AiAi);
         final TextView title = findViewById(R.id.Title);
@@ -121,15 +118,6 @@ public class OpeningScreenActivity extends AppCompatActivity{
         });
 
 
-
-        //below code will switch to the game screen but needs proper timer so it doesnt overlap animation
-//        findViewById(R.id.playButton).setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View view) {
-//                startActivity(new Intent(OpeningScreenActivity.this, GameActivity.class));
-//            }
-//        });
-
-
     }
     private void showListPopupWindow(View anchorView) {
         final ListPopupWindow listPopupWindow = new ListPopupWindow(this);
@@ -149,6 +137,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
         listPopupWindow.setAdapter(listPopupWindowAdapter);
         listPopupWindow.show();
     }
-
-
+    public static void changeVolume(AudioManager audioManager, int progress){
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
+    }
 }

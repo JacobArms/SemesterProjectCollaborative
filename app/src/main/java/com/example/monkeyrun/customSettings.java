@@ -8,13 +8,13 @@ import android.widget.SeekBar;
 public class customSettings extends AppCompatActivity {
     SeekBar musicSeekbar,soundSeekbar;
     AudioManager audioManager;
-    public int volumeMusic, volumeSound;
+    public static int volumeMusic, volumeSound;
+    OpeningScreenActivity openingScreenActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_settings);
-
         //Seekbar adjusting sound
         int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
@@ -31,9 +31,11 @@ public class customSettings extends AppCompatActivity {
 
         //Changes the sound and music of the game
         musicSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                openingScreenActivity.changeVolume(audioManager, progress);
+                musicSeekbar.setProgress(progress);
             }
 
             @Override
@@ -47,4 +49,20 @@ public class customSettings extends AppCompatActivity {
             }
         });
     }
+
 }
+//
+//    @Override
+//    public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+//        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
+//    }
+//
+//    @Override
+//    public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//    }
+//
+//    @Override
+//    public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//    }
