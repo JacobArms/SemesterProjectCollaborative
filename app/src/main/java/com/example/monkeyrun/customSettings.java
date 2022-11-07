@@ -1,15 +1,17 @@
 package com.example.monkeyrun;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.SeekBar;
 
 public class customSettings extends AppCompatActivity {
     SeekBar musicSeekbar,soundSeekbar;
-    AudioManager audioManager;
-    public static int volumeMusic, volumeSound;
     OpeningScreenActivity openingScreenActivity;
+    AudioManager audioManager = openingScreenActivity.audioManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +19,7 @@ public class customSettings extends AppCompatActivity {
         setContentView(R.layout.activity_custom_settings);
         //Seekbar adjusting sound
         int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+
         int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
@@ -26,16 +29,15 @@ public class customSettings extends AppCompatActivity {
         musicSeekbar.setMax(maxVolume);
         soundSeekbar.setMax(maxVolume);
 
-        musicSeekbar.setProgress(currentVolume);
+
         soundSeekbar.setProgress(currentVolume);
 
         //Changes the sound and music of the game
         musicSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                openingScreenActivity.changeVolume(audioManager, progress);
-                musicSeekbar.setProgress(progress);
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
+                musicSeekbar.setProgress(currentVolume);
             }
 
             @Override

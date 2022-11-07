@@ -37,14 +37,16 @@
             android:layout_width="164dp"
             android:layout_height="wrap_content"
             android:layout_row="0"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:progress="100" />
 
         <SeekBar
             android:id="@+id/soundSeekbar"
             android:layout_width="163dp"
             android:layout_height="wrap_content"
             android:layout_row="1"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:progress="100"/>
 
         <ImageView
             android:id="@+id/imageView3"

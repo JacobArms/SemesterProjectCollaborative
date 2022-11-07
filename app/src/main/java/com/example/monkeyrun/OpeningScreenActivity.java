@@ -36,9 +36,9 @@ public class OpeningScreenActivity extends AppCompatActivity{
     ListPopupWindow listPopupWindow;
     MediaPlayer mp;
     MediaPlayer mpGame;
-    SeekBar musicSeekbar,soundSeekbar;
     boolean wasPlaying = false;
     AudioManager audioManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,5 +139,13 @@ public class OpeningScreenActivity extends AppCompatActivity{
     }
     public static void changeVolume(AudioManager audioManager, int progress){
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
+    }
+
+    public AudioManager getAudioManager() {
+        return audioManager;
+    }
+
+    public void setAudioManager(AudioManager audioManager) {
+        this.audioManager = audioManager;
     }
 }
