@@ -6,9 +6,12 @@ import android.app.Activity;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 
 public class customSettings extends AppCompatActivity {
+
     SeekBar musicSeekbar,soundSeekbar;
     OpeningScreenActivity openingScreenActivity;
     AudioManager audioManager = openingScreenActivity.audioManager;
@@ -16,6 +19,8 @@ public class customSettings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        musicSeekbar = findViewById(R.id.musicSeekbar);
+        soundSeekbar = findViewById(R.id.soundSeekbar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_settings);
         //Seekbar adjusting sound
@@ -23,10 +28,8 @@ public class customSettings extends AppCompatActivity {
 
         int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
-
-
         //Sets the max volume for both the music and sound
-        musicSeekbar.setMax(maxVolume);
+        musicSeekbar.setMax(30);
         soundSeekbar.setMax(maxVolume);
 
 
@@ -36,7 +39,6 @@ public class customSettings extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
                 seekBar.setProgress(progress);
-                song.stop();
             }
 
             @Override
@@ -50,7 +52,21 @@ public class customSettings extends AppCompatActivity {
             }
         });
     }
+    public SeekBar getMusicSeekbar() {
+        return musicSeekbar;
+    }
 
+    public void setMusicSeekbar(SeekBar musicSeekbar) {
+        this.musicSeekbar = musicSeekbar;
+    }
+
+    public SeekBar getSoundSeekbar() {
+        return soundSeekbar;
+    }
+
+    public void setSoundSeekbar(SeekBar soundSeekbar) {
+        this.soundSeekbar = soundSeekbar;
+    }
 }
 //
 //    @Override

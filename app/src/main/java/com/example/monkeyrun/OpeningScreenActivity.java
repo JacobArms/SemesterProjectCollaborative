@@ -128,8 +128,9 @@ public class OpeningScreenActivity extends AppCompatActivity{
 
         listPopupWindow.setAnchorView(anchorView);
         ListPopUpWindowAdapter listPopupWindowAdapter = new ListPopUpWindowAdapter(this, sampleData, new ListPopUpWindowAdapter.OnClickDeleteButtonListener() {
-            @Override
+            SeekBar seekBar = findViewById(R.id.musicSeekbar);
             public void onClickExitButton(int position) {
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,position,0);
                 Toast.makeText(OpeningScreenActivity.this, "Settings Saved", Toast.LENGTH_SHORT).show();
                 listPopupWindow.dismiss();
             }
@@ -141,11 +142,4 @@ public class OpeningScreenActivity extends AppCompatActivity{
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
     }
 
-    public AudioManager getAudioManager() {
-        return audioManager;
-    }
-
-    public void setAudioManager(AudioManager audioManager) {
-        this.audioManager = audioManager;
-    }
 }
