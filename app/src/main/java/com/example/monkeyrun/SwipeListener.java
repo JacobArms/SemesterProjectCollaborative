@@ -1,12 +1,16 @@
 package com.example.monkeyrun;
 
+import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
 public class SwipeListener implements View.OnTouchListener {
     GestureDetector gestureDetector;
-
+//    public SwipeListener(Context context){
+//        gestureDetector = new GestureDetector(context, new GestureDetector.OnGestureListener() {
+//
+//    }
     SwipeListener(View view, Aiai aiai, int screenX) {
         int threshold = 100;
         int velocityThreshhold = 100;

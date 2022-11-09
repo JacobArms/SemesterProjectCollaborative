@@ -4,17 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Point;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 public class GameActivity extends AppCompatActivity {
 
     private GameView gameView;
+    private Aiai aiai;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Point point = new Point();
         getWindowManager().getDefaultDisplay().getSize(point);
         gameView = new GameView(this, point.x, point.y);
-
         setContentView(gameView);
     }
 
@@ -29,4 +32,8 @@ public class GameActivity extends AppCompatActivity {
         super.onResume();
         gameView.resume();
     }
+
+//    public void onSwipe(View view){
+//        view.setOnClickListener(new SwipeListener(context));
+//    }
 }
