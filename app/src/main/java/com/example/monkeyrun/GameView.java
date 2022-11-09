@@ -3,6 +3,7 @@ package com.example.monkeyrun;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -21,7 +22,6 @@ public class GameView extends SurfaceView implements Runnable{
     private Background background1, background2;
     private Aiai aiai;
 
-
     public GameView(Context context, int screenX, int screenY) {
         super(context);
         SurfaceView surfaceView = this;
@@ -35,6 +35,10 @@ public class GameView extends SurfaceView implements Runnable{
         aiai = new Aiai(screenX, screenY, getResources());
         background2.y = screenX;
         paint = new Paint();
+    }
+
+    public GameView(Context context) {
+        super(context);
     }
 
     @Override
