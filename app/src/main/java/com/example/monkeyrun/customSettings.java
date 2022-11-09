@@ -12,6 +12,7 @@ public class customSettings extends AppCompatActivity {
     SeekBar musicSeekbar,soundSeekbar;
     OpeningScreenActivity openingScreenActivity;
     AudioManager audioManager = openingScreenActivity.audioManager;
+    MediaPlayer song = openingScreenActivity.mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,6 @@ public class customSettings extends AppCompatActivity {
 
         int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
-        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
 
         //Sets the max volume for both the music and sound
@@ -30,14 +30,13 @@ public class customSettings extends AppCompatActivity {
         soundSeekbar.setMax(maxVolume);
 
 
-        soundSeekbar.setProgress(currentVolume);
-
         //Changes the sound and music of the game
         musicSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
-                musicSeekbar.setProgress(currentVolume);
+                seekBar.setProgress(progress);
+                song.stop();
             }
 
             @Override
