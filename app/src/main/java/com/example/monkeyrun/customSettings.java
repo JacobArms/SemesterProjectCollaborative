@@ -10,17 +10,19 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
-public class customSettings extends AppCompatActivity {
+public class customSettings extends AppCompatActivity{
 
     SeekBar musicSeekbar,soundSeekbar;
     OpeningScreenActivity openingScreenActivity;
     AudioManager audioManager = openingScreenActivity.audioManager;
     MediaPlayer song = openingScreenActivity.mp;
+    public static int musicVol = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         musicSeekbar = findViewById(R.id.musicSeekbar);
         soundSeekbar = findViewById(R.id.soundSeekbar);
+        musicVol=0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_settings);
         //Seekbar adjusting sound
@@ -29,7 +31,7 @@ public class customSettings extends AppCompatActivity {
         int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
         //Sets the max volume for both the music and sound
-        musicSeekbar.setMax(30);
+        musicSeekbar.setMax(maxVolume);
         soundSeekbar.setMax(maxVolume);
 
 
@@ -37,8 +39,7 @@ public class customSettings extends AppCompatActivity {
         musicSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
-                seekBar.setProgress(progress);
+
             }
 
             @Override

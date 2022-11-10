@@ -1,18 +1,25 @@
 package com.example.monkeyrun;
 
+import static com.example.monkeyrun.customSettings.musicVol;
+
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListPopupWindow;
 import android.widget.TextView;
@@ -31,14 +38,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class OpeningScreenActivity extends AppCompatActivity{
-
+    Dialog myDialog;
     Timer timer;
+    int volume = 80;
     ListPopupWindow listPopupWindow;
     MediaPlayer mp;
     MediaPlayer mpGame;
     boolean wasPlaying = false;
     AudioManager audioManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +56,8 @@ public class OpeningScreenActivity extends AppCompatActivity{
         mpGame = MediaPlayer.create(this,R.raw.monkey_run_game_music);
         mp.start();
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,musicVol,0);
+        myDialog = new Dialog(this);
         //Movement of the objects off of screen when the "play" button is hit
         final ImageView AiAi = findViewById(R.id.AiAi);
         final TextView title = findViewById(R.id.Title);
@@ -110,36 +119,48 @@ public class OpeningScreenActivity extends AppCompatActivity{
             }
         });
 
-        settingsButton.setOnClickListener(new View.OnClickListener() {
+    }
+    public void ShowPopup(View v) {
+        Log.println(Log.ASSERT, "SAUER", "POPUP OPENED");
+        SeekBar musicVol;
+        ImageView txtclose;
+        Button btnFollow;
+        myDialog.setContentView(R.layout.activity_custom_settings);
+        txtclose =(ImageView) myDialog.findViewById(R.id.exitButton);
+        musicVol =(SeekBar) myDialog.findViewById(R.id.musicSeekbar);
+        musicVol.setProgress(volume);
+        musicVol.setOnSeekBarChangeListener(musicBarChange);
+
+
+        txtclose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showListPopupWindow(v);
+                Log.println(Log.ASSERT, "SAUER", "POPUP CLOSED");
+                myDialog.dismiss();
             }
         });
-
-
-    }
-    private void showListPopupWindow(View anchorView) {
-        final ListPopupWindow listPopupWindow = new ListPopupWindow(this);
-        listPopupWindow.setWidth(600);
-        List<String> sampleData = new ArrayList<>();
-        sampleData.add("");
-
-
-        listPopupWindow.setAnchorView(anchorView);
-        ListPopUpWindowAdapter listPopupWindowAdapter = new ListPopUpWindowAdapter(this, sampleData, new ListPopUpWindowAdapter.OnClickDeleteButtonListener() {
-            SeekBar seekBar = findViewById(R.id.musicSeekbar);
-            public void onClickExitButton(int position) {
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,position,0);
-                Toast.makeText(OpeningScreenActivity.this, "Settings Saved", Toast.LENGTH_SHORT).show();
-                listPopupWindow.dismiss();
-            }
-        });
-        listPopupWindow.setAdapter(listPopupWindowAdapter);
-        listPopupWindow.show();
-    }
-    public static void changeVolume(AudioManager audioManager, int progress){
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
     }
 
+    //LOOKS FOR A CHANGE ON THE SEEK BAR
+    SeekBar.OnSeekBarChangeListener musicBarChange = new SeekBar.OnSeekBarChangeListener(){
+
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+            Log.println(Log.ASSERT, "SAUER", "PROGRESS CHANGED" + i);
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,i,0);
+            volume = i;
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+            Log.println(Log.ASSERT, "SAUER", "1");
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            Log.println(Log.ASSERT, "SAUER", "2");
+        }
+    };
 }

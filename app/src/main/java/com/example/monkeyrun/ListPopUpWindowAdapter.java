@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -72,6 +73,7 @@ public class ListPopUpWindowAdapter extends BaseAdapter {
         private TextView musicTitle;
         private ImageView exitButton;
     }
+
 
     // interface to return callback to activity
     public interface OnClickDeleteButtonListener{

@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:columnCount="4"
         android:rowCount="5"
+        android:background="@color/white"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-80dp">
 
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="2"
-            android:progress="100" />
+            android:progress="80" />
 
         <SeekBar
             android:id="@+id/soundSeekbar"
@@ -46,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_row="1"
             android:layout_column="2"
-            android:progress="100"/>
+            android:progress="80"/>
 
         <ImageView
             android:id="@+id/imageView3"
