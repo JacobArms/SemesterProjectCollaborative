@@ -11,9 +11,12 @@
         android:id="@+id/imageView2"
         android:layout_width="414dp"
         android:layout_height="116dp"
-        app:srcCompat="@drawable/woodsign"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-3dp" />
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/woodsign" />
 
     <ImageView
         android:id="@+id/BlackCircle"
@@ -91,6 +94,8 @@
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/white"
         android:onClick="ShowPopup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toEndOf="@+id/Highscore"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/volumebutton" />
@@ -105,7 +110,9 @@
         app:layout_constraintEnd_toStartOf="@+id/Highscore"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/diffbutton" />
+        app:srcCompat="@drawable/diffbutton"
+        android:onClick="ShowDiffPopup"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

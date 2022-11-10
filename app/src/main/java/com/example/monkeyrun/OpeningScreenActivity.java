@@ -46,6 +46,8 @@ public class OpeningScreenActivity extends AppCompatActivity{
     MediaPlayer mpGame;
     boolean wasPlaying = false;
     AudioManager audioManager;
+    // Sets the difficulty of the game by setting the int to either 1, 2, or 3
+    int diffNum = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +135,6 @@ public class OpeningScreenActivity extends AppCompatActivity{
         Log.println(Log.ASSERT, "SAUER", "POPUP OPENED");
         SeekBar musicVol;
         ImageView txtclose;
-        Button btnFollow;
         myDialog.setContentView(R.layout.activity_custom_settings);
         txtclose =(ImageView) myDialog.findViewById(R.id.exitButton);
         musicVol =(SeekBar) myDialog.findViewById(R.id.musicSeekbar);
@@ -146,6 +147,48 @@ public class OpeningScreenActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Log.println(Log.ASSERT, "SAUER", "POPUP CLOSED");
                 myDialog.dismiss();
+            }
+        });
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+    }
+
+    public void ShowDiffPopup(View v) {
+        ImageView txtclose;
+        Button easy;
+        Button medium;
+        Button hard;
+        myDialog.setContentView(R.layout.custom_difficulty_settings);
+        txtclose =  (ImageView) myDialog.findViewById(R.id.exitButton);
+        easy = myDialog.findViewById(R.id.easyButton);
+        medium = myDialog.findViewById(R.id.mediumButton);
+        hard = myDialog.findViewById(R.id.hardButton);
+
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+
+        easy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                diffNum = 1;
+            }
+        });
+
+        medium.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                diffNum = 2;
+            }
+        });
+
+        hard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                diffNum = 3;
             }
         });
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OpeningScreenActivity">
+
+
+    <GridLayout
+        android:id="@+id/favorites_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="4"
+        android:rowCount="5"
+        android:background="@color/white"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-80dp">
+
+        <ImageView
+            android:id="@+id/exitButton"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_row="0"
+            android:layout_column="3"
+            app:srcCompat="@drawable/black_x" />
+
+        <ImageView
+            android:id="@+id/aiaiTemp"
+            android:layout_width="94dp"
+            android:layout_height="72dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            app:srcCompat="@drawable/aiai_image_temp" />
+
+        <ImageView
+            android:id="@+id/babyTemp"
+            android:layout_width="88dp"
+            android:layout_height="72dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            app:srcCompat="@drawable/baby_monkey_temp" />
+
+        <ImageView
+            android:id="@+id/gonGonTemp"
+            android:layout_width="86dp"
+            android:layout_height="72dp"
+            android:layout_row="0"
+            android:layout_column="2"
+            app:srcCompat="@drawable/gon_gon_temp_image" />
+
+        <Button
+            android:id="@+id/easyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:text="Easy" />
+
+        <Button
+            android:id="@+id/mediumButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:text="Medium" />
+
+        <Button
+            android:id="@+id/hardButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:text="Hard" />
+
+    </GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
