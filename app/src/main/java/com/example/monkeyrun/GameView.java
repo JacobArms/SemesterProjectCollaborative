@@ -3,6 +3,7 @@ package com.example.monkeyrun;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -13,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import com.google.androidgamesdk.GameActivity;
 
 public class GameView extends SurfaceView implements Runnable{
+    private final Object swipeListener;
     //12:00 into video
 
     private Thread thread;
@@ -23,13 +25,13 @@ public class GameView extends SurfaceView implements Runnable{
     private Background background1, background2;
     private Aiai aiai;
     GestureDetector gestureDetector;
-//    private MotionEvent MotionEvent;
-//    MotionEvent motionEvent;
+
 
     public GameView(Context context, int screenX, int screenY) {
         super(context);
         SurfaceView surfaceView = this;
-        SwipeListener swipeListener = new SwipeListener(surfaceView, aiai, screenX);
+        gestureDetector = new GestureDetector(this, swipeListener);
+        surfaceView.setOnTouchListener(touchListener);
         this.screenX=screenX;
         this.screenY=screenY;
         screenRatioX = 1920f / screenX;
@@ -106,46 +108,21 @@ public class GameView extends SurfaceView implements Runnable{
             e.printStackTrace();
         }
     }
+    View.OnTouchListener touchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return gestureDetector.onTouchEvent(event);
+        }
+    };
 
-//    public void swipeListener(View view, Aiai aiai, int screenX){
-//        int threshold = 100;
-//        int velocityThreshhold = 100;
-//
-//        GestureDetector.SimpleOnGestureListener listener = new GestureDetector.SimpleOnGestureListener() {
-//
-//            public boolean onDown(MotionEvent e) {
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-//                float xDiff = e2.getX() - e1.getX();
-//                float yDiff = e2.getY() - e1.getY();
-//                try {
-//                    if (Math.abs(xDiff) > Math.abs(yDiff)) {
-//                        if (Math.abs(xDiff) > threshold && Math.abs(velocityX) > velocityThreshhold) {
-//                            if (xDiff > 0) {
-//                                //right
-//                                aiai.x += screenX/5;
-//
-//                            } else {
-//                                //left
-//                                aiai.x -= screenX/5;
-//                            }
-//                            return true;
-//                        }
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//                return false;
-//            }
-//        };
-//        gestureDetector = new GestureDetector(listener);
-////        public boolean onTouch(View view, MotionEvent){
-////            return gestureDetector.onTouchEvent(MotionEvent);
-////        }
-//    }
+    class swipeListener extends GestureDetector.SimpleOnGestureListener {
+        public boolean onDown(MotionEvent event) {
+            Log.d("SAUER","HELD DOWN");
 
+            // don't return false here or else none of the other
+            // gestures will work
+            return true;
+        }
+    }
 }
 
