@@ -53,9 +53,11 @@ public class OpeningScreenActivity extends AppCompatActivity{
         setContentView(R.layout.activity_opening_screen);
         //Creates the background music for the game
         mp = MediaPlayer.create(this,R.raw.monkey_run_lobby_music);
+        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,100,100);
         mpGame = MediaPlayer.create(this,R.raw.monkey_run_game_music);
         mp.start();
-        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,musicVol,0);
         myDialog = new Dialog(this);
         //Movement of the objects off of screen when the "play" button is hit
@@ -156,7 +158,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             Log.println(Log.ASSERT, "SAUER", "PROGRESS CHANGED" + i);
-            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,i,0);
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,i/5,0);
             volume = i;
         }
 
