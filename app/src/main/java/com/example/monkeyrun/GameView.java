@@ -14,7 +14,6 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import com.google.androidgamesdk.GameActivity;
 
 public class GameView extends SurfaceView implements Runnable{
-    private final Object swipeListener;
     //12:00 into video
 
     private Thread thread;
@@ -30,7 +29,7 @@ public class GameView extends SurfaceView implements Runnable{
     public GameView(Context context, int screenX, int screenY) {
         super(context);
         SurfaceView surfaceView = this;
-        gestureDetector = new GestureDetector(this, swipeListener);
+//        gestureDetector = new GestureDetector(this, new swipeListener());
         surfaceView.setOnTouchListener(touchListener);
         this.screenX=screenX;
         this.screenY=screenY;
@@ -114,8 +113,8 @@ public class GameView extends SurfaceView implements Runnable{
             return gestureDetector.onTouchEvent(event);
         }
     };
-
-    class swipeListener extends GestureDetector.SimpleOnGestureListener {
+//https://stackoverflow.com/questions/45054908/how-to-add-a-gesture-detector-to-a-view-in-android
+    public class swipeListener extends GestureDetector.SimpleOnGestureListener {
         public boolean onDown(MotionEvent event) {
             Log.d("SAUER","HELD DOWN");
 
