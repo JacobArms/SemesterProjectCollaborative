@@ -215,4 +215,12 @@ public class OpeningScreenActivity extends AppCompatActivity{
             Log.println(Log.ASSERT, "SAUER", "2");
         }
     };
+
+    public int getDiffNum() {
+        return diffNum;
+    }
+
+    public void setDiffNum(int diffNum) {
+        this.diffNum = diffNum;
+    }
 }
