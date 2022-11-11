@@ -8,10 +8,9 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintSet;
-
-import com.google.androidgamesdk.GameActivity;
 
 public class GameView extends SurfaceView implements Runnable{
     //12:00 into video
@@ -23,14 +22,13 @@ public class GameView extends SurfaceView implements Runnable{
     private Paint paint;
     private Background background1, background2;
     private Aiai aiai;
-    GestureDetector gestureDetector;
+    private GestureDetector gestureDetector;
+    View.OnTouchListener gestureListener;
 
 
     public GameView(Context context, int screenX, int screenY) {
         super(context);
         SurfaceView surfaceView = this;
-//        gestureDetector = new GestureDetector(this, new swipeListener());
-        surfaceView.setOnTouchListener(touchListener);
         this.screenX=screenX;
         this.screenY=screenY;
         screenRatioX = 1920f / screenX;
@@ -107,21 +105,33 @@ public class GameView extends SurfaceView implements Runnable{
             e.printStackTrace();
         }
     }
-    View.OnTouchListener touchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            return gestureDetector.onTouchEvent(event);
-        }
-    };
-//https://stackoverflow.com/questions/45054908/how-to-add-a-gesture-detector-to-a-view-in-android
-    public class swipeListener extends GestureDetector.SimpleOnGestureListener {
-        public boolean onDown(MotionEvent event) {
-            Log.d("SAUER","HELD DOWN");
 
-            // don't return false here or else none of the other
-            // gestures will work
+
+    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            try {
+                if (Math.abs(e1.getY() - e2.getY()) > 100)
+                    return false;
+                // right to left swipe
+                if(e1.getX() - e2.getX() > 100 && Math.abs(velocityX) > 100) {
+                    //left
+                    aiai.x-=screenX/5;
+                } else if (e2.getX() - e1.getX() > 100 && Math.abs(velocityX) > 100) {
+                    //right
+                    aiai.x+=screenX/5;
+                }
+            } catch (Exception e) {
+                // nothing
+            }
+            return false;
+        }
+
+        @Override
+        public boolean onDown(MotionEvent e) {
             return true;
         }
     }
+
 }
 
