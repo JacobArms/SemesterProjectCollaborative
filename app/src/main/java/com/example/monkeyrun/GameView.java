@@ -21,6 +21,7 @@ public class GameView extends SurfaceView implements Runnable{
     private float screenRatioX, screenRatioY;
     private Paint paint;
     private Background background1, background2;
+    private Obstacle ob1,ob2,ob3,ob4;
     private Aiai aiai;
     private GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
@@ -35,6 +36,13 @@ public class GameView extends SurfaceView implements Runnable{
         screenRatioY = 1080f/ screenY;
         background1= new Background(screenX, screenY, getResources());
         background2= new Background(screenX, screenY, getResources());
+
+        //The (int)Math.floor(Math.random()*6), decides whether or not the object is a banana, barrel, or sideways barrel
+        ob1= new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+        ob2= new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+        ob3= new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+        ob4= new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+
         aiai = new Aiai(screenX, screenY, getResources());
         background2.y = screenX;
         paint = new Paint();
@@ -59,6 +67,11 @@ public class GameView extends SurfaceView implements Runnable{
         float speed = 25;
         background1.y += speed;
         background2.y += speed;
+        ob1.y += speed;
+        ob2.y += speed;
+        ob3.y += speed;
+        ob4.y += speed;
+
 
         if(background1.y >= screenY){
             background1.y = -screenY;
@@ -66,6 +79,8 @@ public class GameView extends SurfaceView implements Runnable{
         if(background2.y-3250 >= screenY){
             background2.y = background2.y -screenY*2 ;
         }
+
+
     }
     //draws new position of drawables
     private void draw(){
@@ -73,6 +88,10 @@ public class GameView extends SurfaceView implements Runnable{
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
             canvas.drawBitmap(background2.background, background2.x, background2.y-3250, paint);
+            canvas.drawBitmap(ob1.object, ob1.x, ob1.y, paint);
+            canvas.drawBitmap(ob2.object, ob2.x, ob1.y, paint);
+            canvas.drawBitmap(ob3.object, ob3.x, ob1.y, paint);
+            canvas.drawBitmap(ob4.object, ob4.x, ob1.y, paint);
 
             canvas.drawBitmap(aiai.getFrame(), aiai.x, aiai.y, paint);
             getHolder().unlockCanvasAndPost(canvas);
@@ -131,7 +150,7 @@ public class GameView extends SurfaceView implements Runnable{
         public boolean onDown(MotionEvent e) {
             return true;
         }
-    }
+    };
 
 }
 
