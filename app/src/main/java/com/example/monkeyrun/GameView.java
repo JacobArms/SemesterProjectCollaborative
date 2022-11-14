@@ -28,7 +28,7 @@ public class GameView extends SurfaceView implements Runnable{
 
     public GameView(Context context, int screenX, int screenY) {
         super(context);
-        SurfaceView surfaceView = this;
+
         this.screenX=screenX;
         this.screenY=screenY;
         screenRatioX = 1920f / screenX;
@@ -107,19 +107,19 @@ public class GameView extends SurfaceView implements Runnable{
     }
 
 
-    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
+    GestureDetector.SimpleOnGestureListener listener = new GestureDetector.SimpleOnGestureListener() {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             try {
-                if (Math.abs(e1.getY() - e2.getY()) > 100)
-                    return false;
                 // right to left swipe
                 if(e1.getX() - e2.getX() > 100 && Math.abs(velocityX) > 100) {
                     //left
                     aiai.x-=screenX/5;
+                    Log.println(Log.ASSERT, "SAUER", "LEFT");
                 } else if (e2.getX() - e1.getX() > 100 && Math.abs(velocityX) > 100) {
                     //right
                     aiai.x+=screenX/5;
+                    Log.println(Log.ASSERT, "SAUER", "RIGHT");
                 }
             } catch (Exception e) {
                 // nothing
