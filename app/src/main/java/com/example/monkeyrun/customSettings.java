@@ -16,7 +16,7 @@ public class customSettings extends AppCompatActivity{
     OpeningScreenActivity openingScreenActivity;
     AudioManager audioManager = openingScreenActivity.audioManager;
     MediaPlayer song = openingScreenActivity.mp;
-    public static int musicVol = 10;
+    public static int musicVol = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

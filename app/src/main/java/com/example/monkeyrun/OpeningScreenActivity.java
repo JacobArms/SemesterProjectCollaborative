@@ -59,8 +59,6 @@ public class OpeningScreenActivity extends AppCompatActivity{
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,100,100);
         mpGame = MediaPlayer.create(this,R.raw.monkey_run_game_music);
         mp.start();
-
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,musicVol,0);
         myDialog = new Dialog(this);
         //Movement of the objects off of screen when the "play" button is hit
         final ImageView AiAi = findViewById(R.id.AiAi);

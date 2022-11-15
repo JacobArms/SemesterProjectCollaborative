@@ -3,75 +3,89 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="150dp"
     tools:context=".OpeningScreenActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="400dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backgroundpopup" />
 
-    <GridLayout
-        android:id="@+id/favorites_grid"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="4"
-        android:rowCount="5"
-        android:background="@color/white"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-80dp">
+    <TextView
+        android:id="@+id/musicText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:text="Music"
+        app:layout_constraintTop_toTopOf="@+id/musicSeekbar"
+        tools:layout_editor_absoluteX="121dp" />
 
-        <TextView
-            android:id="@+id/musicText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:text="Music" />
+    <TextView
+        android:id="@+id/soundText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:text="Sound"
+        app:layout_constraintEnd_toEndOf="@+id/musicText"
+        app:layout_constraintTop_toTopOf="@+id/soundSeekbar" />
 
-        <TextView
-            android:id="@+id/soundText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:text="Sound" />
+    <SeekBar
+        android:id="@+id/musicSeekbar"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_row="0"
+        android:layout_column="2"
+        android:progress="50"
+        tools:layout_editor_absoluteX="167dp"
+        tools:layout_editor_absoluteY="33dp" />
 
-        <SeekBar
-            android:id="@+id/musicSeekbar"
-            android:layout_width="164dp"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:progress="50" />
+    <SeekBar
+        android:id="@+id/soundSeekbar"
+        android:layout_width="163dp"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="2"
+        android:progress="50"
+        app:layout_constraintEnd_toEndOf="@+id/musicSeekbar"
+        tools:layout_editor_absoluteY="66dp" />
 
-        <SeekBar
-            android:id="@+id/soundSeekbar"
-            android:layout_width="163dp"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="2"
-            android:progress="50"/>
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="24dp"
+        android:layout_height="25dp"
+        android:layout_row="0"
+        android:layout_column="0"
+        app:layout_constraintBottom_toBottomOf="@+id/musicText"
+        app:srcCompat="@drawable/music_note"
+        tools:layout_editor_absoluteX="69dp" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="24dp"
-            android:layout_height="25dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            app:srcCompat="@drawable/music_note" />
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="25dp"
+        android:layout_height="24dp"
+        android:layout_row="1"
+        android:layout_column="0"
+        app:srcCompat="@drawable/volume_icon"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="61dp" />
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="23dp"
-            android:layout_height="21dp"
-            android:layout_row="1"
-            android:layout_column="0"
-            app:srcCompat="@drawable/volume_icon" />
+    <ImageView
+        android:id="@+id/exitButton"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_row="0"
+        android:layout_column="3"
+        app:srcCompat="@drawable/black_x"
+        tools:layout_editor_absoluteX="343dp"
+        tools:layout_editor_absoluteY="16dp" />
 
-        <ImageView
-            android:id="@+id/exitButton"
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:layout_row="0"
-            android:layout_column="3"
-            app:srcCompat="@drawable/black_x" />
 
-    </GridLayout>
+</>
 </androidx.constraintlayout.widget.ConstraintLayout>
