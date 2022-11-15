@@ -11,7 +11,7 @@
         android:id="@+id/imageView2"
         android:layout_width="414dp"
         android:layout_height="116dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -66,10 +66,10 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintVertical_bias="0.06" />
 
     <TextView
         android:id="@+id/playButton"
@@ -95,7 +95,7 @@
         android:backgroundTint="@color/white"
         android:onClick="ShowPopup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toEndOf="@+id/Highscore"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/volumebutton" />
@@ -104,15 +104,14 @@
         android:id="@+id/diffButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="43dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/white"
+        android:onClick="ShowDiffPopup"
         app:layout_constraintEnd_toStartOf="@+id/Highscore"
+        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/diffbutton"
-        android:onClick="ShowDiffPopup"
-        />
+        app:srcCompat="@drawable/diffbutton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

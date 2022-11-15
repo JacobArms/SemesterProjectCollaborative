@@ -25,6 +25,7 @@ public class GameView extends SurfaceView implements Runnable{
     private Aiai aiai;
     private GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
+    int randNum1 = screenX/(int)Math.floor(Math.random()*5+1);
 
 
     public GameView(Context context, int screenX, int screenY) {
@@ -79,7 +80,9 @@ public class GameView extends SurfaceView implements Runnable{
         if(background2.y-3250 >= screenY){
             background2.y = background2.y -screenY*2 ;
         }
-
+//        if(ob1.y <= screenY){
+//            ob1.y = ob1.y + screenY ;
+//        }
 
     }
     //draws new position of drawables
@@ -88,14 +91,20 @@ public class GameView extends SurfaceView implements Runnable{
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
             canvas.drawBitmap(background2.background, background2.x, background2.y-3250, paint);
-            canvas.drawBitmap(ob1.object, ob1.x, ob1.y, paint);
-            canvas.drawBitmap(ob2.object, ob2.x, ob1.y, paint);
-            canvas.drawBitmap(ob3.object, ob3.x, ob1.y, paint);
-            canvas.drawBitmap(ob4.object, ob4.x, ob1.y, paint);
+            canvas.drawBitmap(ob1.object, randNum1, ob1.y-1500, paint);
+            canvas.drawBitmap(ob2.object, randNum1, ob1.y-300, paint);
+            canvas.drawBitmap(ob3.object, randNum1, ob1.y-300, paint);
+            canvas.drawBitmap(ob4.object, randNum1, ob1.y-300, paint);
 
             canvas.drawBitmap(aiai.getFrame(), aiai.x, aiai.y, paint);
             getHolder().unlockCanvasAndPost(canvas);
 
+            if (ob1.y <= -screenY) {
+                //Creates a new object for the obstacle
+                ob1.setType((int)Math.floor(Math.random()*3+1));
+                ob1.setY(screenY);
+
+            }
         }
     }
     //waiting code (60fps)
