@@ -22,9 +22,11 @@
         android:layout_height="wrap_content"
         android:layout_row="0"
         android:layout_column="1"
+        android:layout_marginStart="121dp"
+        android:layout_marginTop="33dp"
         android:text="Music"
-        app:layout_constraintTop_toTopOf="@+id/musicSeekbar"
-        tools:layout_editor_absoluteX="121dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/soundText"
@@ -32,8 +34,12 @@
         android:layout_height="wrap_content"
         android:layout_row="1"
         android:layout_column="1"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="8dp"
         android:text="Sound"
         app:layout_constraintEnd_toEndOf="@+id/musicText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/soundSeekbar" />
 
     <SeekBar
@@ -42,9 +48,11 @@
         android:layout_height="wrap_content"
         android:layout_row="0"
         android:layout_column="2"
+        android:layout_marginStart="167dp"
+        android:layout_marginTop="33dp"
         android:progress="50"
-        tools:layout_editor_absoluteX="167dp"
-        tools:layout_editor_absoluteY="33dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SeekBar
         android:id="@+id/soundSeekbar"
@@ -52,29 +60,37 @@
         android:layout_height="wrap_content"
         android:layout_row="1"
         android:layout_column="2"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="66dp"
         android:progress="50"
         app:layout_constraintEnd_toEndOf="@+id/musicSeekbar"
-        tools:layout_editor_absoluteY="66dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="24dp"
-        android:layout_height="25dp"
+        android:layout_width="36dp"
+        android:layout_height="34dp"
         android:layout_row="0"
         android:layout_column="0"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="27dp"
         app:layout_constraintBottom_toBottomOf="@+id/musicText"
-        app:srcCompat="@drawable/music_note"
-        tools:layout_editor_absoluteX="69dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/music_note" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="25dp"
-        android:layout_height="24dp"
+        android:layout_width="37dp"
+        android:layout_height="39dp"
         android:layout_row="1"
         android:layout_column="0"
-        app:srcCompat="@drawable/volume_icon"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="61dp" />
+        android:layout_marginTop="64dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/volume_icon" />
 
     <ImageView
         android:id="@+id/exitButton"
@@ -82,10 +98,10 @@
         android:layout_height="21dp"
         android:layout_row="0"
         android:layout_column="3"
-        app:srcCompat="@drawable/black_x"
-        tools:layout_editor_absoluteX="343dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_marginStart="343dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/black_x" />
 
-
-</>
 </androidx.constraintlayout.widget.ConstraintLayout>
