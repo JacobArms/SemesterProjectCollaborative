@@ -3,6 +3,8 @@ package com.example.monkeyrun;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
 
 public class Obstacle {
     int x = 0,y = 0;
@@ -19,8 +21,14 @@ public class Obstacle {
             object = BitmapFactory.decodeResource(res, R.drawable.banana);
         }
         object = Bitmap.createScaledBitmap(object, screenX/5, screenX/5, false);
+        x = screenX/2 - object.getWidth()/2;
     }
-
+//    public Bitmap addPaddingLeftForBitmap(Bitmap bitmap, int paddingLeft) {
+//        Bitmap outputBitmap = Bitmap.createBitmap(bitmap.getWidth() + paddingLeft, bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+//        Canvas canvas = new Canvas(outputBitmap);
+//        canvas.drawBitmap(bitmap, paddingLeft, 0, null);
+//        return outputBitmap;
+//    }
     public int getX() {
         return x;
     }
@@ -52,4 +60,5 @@ public class Obstacle {
     public void setType(int type) {
         this.type = type;
     }
+
 }
