@@ -25,7 +25,7 @@ public class GameView extends SurfaceView implements Runnable{
     private Aiai aiai;
     private GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
-    int objectOneX, objectTwoX, objectThreeX, objectFourX, objectFiveX;
+    private double objectOneX, objectTwoX, objectThreeX, objectFourX, objectFiveX;
 
 
     public GameView(Context context, int screenX, int screenY) {
@@ -45,11 +45,11 @@ public class GameView extends SurfaceView implements Runnable{
         ob4= new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
         ob5= new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
 
-        objectOneX = screenX;
-        objectTwoX = screenX/2 - ob2.object.getWidth();
-        objectThreeX = screenX/3 - ob3.object.getWidth();
-        objectFourX = screenX/4 - ob4.object.getWidth();
-        objectFiveX = screenX/4 - ob4.object.getWidth();
+        objectOneX = screenX - ob1.object.getWidth();
+        objectTwoX = screenX * 0.8 - ob2.object.getWidth();
+        objectThreeX = screenX * 0.6 - ob3.object.getWidth();
+        objectFourX = screenX * 0.4 - ob4.object.getWidth();
+        objectFiveX = screenX * 0.2 - ob5.object.getWidth();
 
 //        ob2.addPaddingLeftForBitmap(ob2.object, 500);
 
@@ -81,6 +81,7 @@ public class GameView extends SurfaceView implements Runnable{
         ob2.y += speed;
         ob3.y += speed;
         ob4.y += speed;
+        ob5.y += speed;
 
 
         if(background1.y >= screenY){
@@ -90,19 +91,19 @@ public class GameView extends SurfaceView implements Runnable{
             background2.y = background2.y -screenY*2 ;
         }
 
-        if(ob1.y-1500 >= screenY){
+        if(ob1.y >= screenY){
             ob1.setType((int)Math.floor(Math.random()*3+1));
             ob1.setObject(null);
             ob1 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
             ob1.setY(-500);
         }
-        if(ob2.y-1500 >= screenY){
+        if(ob2.y-500 >= screenY){
             ob2.setType((int)Math.floor(Math.random()*3+1));
             ob2.setObject(null);
             ob2 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
             ob2.setY(-500);
         }
-        if(ob3.y-1500 >= screenY){
+        if(ob3.y-1000 >= screenY){
             ob3.setType((int)Math.floor(Math.random()*3+1));
             ob3.setObject(null);
             ob3 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
@@ -114,7 +115,7 @@ public class GameView extends SurfaceView implements Runnable{
             ob4 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
             ob4.setY(-500);
         }
-        if(ob5.y-1500 >= screenY){
+        if(ob5.y-2000 >= screenY){
             ob5.setType((int)Math.floor(Math.random()*3+1));
             ob5.setObject(null);
             ob5 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
@@ -131,11 +132,11 @@ public class GameView extends SurfaceView implements Runnable{
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
             canvas.drawBitmap(background2.background, background2.x, background2.y-3250, paint);
-            canvas.drawBitmap(ob1.object, objectOneX, ob1.y, paint);
-            canvas.drawBitmap(ob2.object,objectTwoX, ob2.y-500, paint);
-            canvas.drawBitmap(ob3.object, objectThreeX, ob3.y-1000, paint);
-            canvas.drawBitmap(ob4.object, objectFourX, ob4.y-1500, paint);
-            canvas.drawBitmap(ob5.object, objectFiveX, ob5.y-2000, paint);
+            canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
+            canvas.drawBitmap(ob2.object,(float) objectTwoX, ob2.y-500, paint);
+            canvas.drawBitmap(ob3.object, (float) objectThreeX, ob3.y-1000, paint);
+            canvas.drawBitmap(ob4.object, (float) objectFourX, ob4.y-1500, paint);
+            canvas.drawBitmap(ob5.object, (float) objectFiveX, ob5.y-2000, paint);
 
             canvas.drawBitmap(aiai.getFrame(), aiai.x, aiai.y, paint);
             getHolder().unlockCanvasAndPost(canvas);

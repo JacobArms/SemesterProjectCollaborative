@@ -7,11 +7,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 
 public class Obstacle {
-    int x = 0,y = 0;
+    double x = 0;
+    int y = 0;
     Bitmap object;
-    int type;
+    private int type;
 
-    public Obstacle (int type, int screenX, int screenY, Resources res ){
+    public Obstacle (int type, double screenX, int screenY, Resources res ){
         this.type = type;
         if (type == 1) {
             object = BitmapFactory.decodeResource(res, R.drawable.normal_barrel);
@@ -20,7 +21,7 @@ public class Obstacle {
         }else if(type == 3){
             object = BitmapFactory.decodeResource(res, R.drawable.banana);
         }
-        object = Bitmap.createScaledBitmap(object, screenX/5, screenX/5, false);
+        object = Bitmap.createScaledBitmap(object, (int)screenX/5, (int)screenX/5, false);
         x = screenX/2 - object.getWidth()/2;
     }
 //    public Bitmap addPaddingLeftForBitmap(Bitmap bitmap, int paddingLeft) {
@@ -29,7 +30,7 @@ public class Obstacle {
 //        canvas.drawBitmap(bitmap, paddingLeft, 0, null);
 //        return outputBitmap;
 //    }
-    public int getX() {
+    public double getX() {
         return x;
     }
 
