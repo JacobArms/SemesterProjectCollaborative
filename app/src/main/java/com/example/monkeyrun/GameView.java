@@ -1,6 +1,7 @@
 package com.example.monkeyrun;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
@@ -121,6 +122,14 @@ public class GameView extends SurfaceView implements Runnable{
             ob5 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
             ob5.setY(-500);
         }
+
+        if(aiai.y - aiai.height == ob3.y){
+            if(aiai.x == ob3.x){
+
+            }
+        }
+
+
 //        if(ob1.y <= screenY){
 //            ob1.y = ob1.y + screenY ;
 //        }

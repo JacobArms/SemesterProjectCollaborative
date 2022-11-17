@@ -1,5 +1,6 @@
 package com.example.monkeyrun;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,6 +25,7 @@ public class Obstacle {
         object = Bitmap.createScaledBitmap(object, (int)screenX/5, (int)screenX/5, false);
         x = screenX/2 - object.getWidth()/2;
     }
+
 //    public Bitmap addPaddingLeftForBitmap(Bitmap bitmap, int paddingLeft) {
 //        Bitmap outputBitmap = Bitmap.createBitmap(bitmap.getWidth() + paddingLeft, bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 //        Canvas canvas = new Canvas(outputBitmap);

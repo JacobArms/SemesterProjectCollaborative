@@ -2,6 +2,7 @@ package com.example.monkeyrun;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,10 @@ public class GameActivity extends AppCompatActivity {
         gameView.resume();
     }
 
+    public void hitObstacle(){
+        Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
+        startActivity(intent);
+    }
 //    public void onSwipe(View view){
 //        view.setOnClickListener(new SwipeListener(context));
 //    }
