@@ -14,8 +14,6 @@ import android.widget.Toast;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 public class GameView extends SurfaceView implements Runnable{
-    //12:00 into video
-
     private Thread thread;
     private Boolean isPlaying;
     private int screenX, screenY;
@@ -24,14 +22,15 @@ public class GameView extends SurfaceView implements Runnable{
     private Background background1, background2;
     private Obstacle ob1,ob2,ob3,ob4,ob5;
     private Aiai aiai;
+    private boolean right = false, left = false;
     private GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
     private double objectOneX, objectTwoX, objectThreeX, objectFourX, objectFiveX;
+    SurfaceView gameView = this;
 
 
     public GameView(Context context, int screenX, int screenY) {
         super(context);
-
         this.screenX=screenX;
         this.screenY=screenY;
         screenRatioX = 1920f / screenX;
@@ -62,7 +61,8 @@ public class GameView extends SurfaceView implements Runnable{
     public GameView(Context context) {
         super(context);
     }
-
+    
+    
     @Override
     //While the game is playing is true this will run to update what is happening while a user is playing
     public void run() {
@@ -84,6 +84,7 @@ public class GameView extends SurfaceView implements Runnable{
         ob4.y += speed;
         ob5.y += speed;
 
+        if (left)
 
         if(background1.y >= screenY){
             background1.y = -screenY;
@@ -185,32 +186,26 @@ public class GameView extends SurfaceView implements Runnable{
         }
     }
 
+//
+//class swipeDetector extends GestureDetector.SimpleOnGestureListener {
+//    public boolean onSwipe(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+//        try {
+//            Log.println(Log.ASSERT, "SAUER", "POPUP CLOSED");
+//            // right to left swipe
+//            if (e1.getX() - e2.getX() > 100 && Math.abs(velocityX) > 100) {
+//                //left
+//            } else if (e2.getX() - e1.getX() > 100 && Math.abs(velocityX) > 100) {
+//                //right
+//                right = true;
+//            }
+//        } catch (Exception e) {
+//            // nothing
+//        }
+//        return true;
+//    }
+//}
 
-    GestureDetector.SimpleOnGestureListener listener = new GestureDetector.SimpleOnGestureListener() {
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            try {
-                // right to left swipe
-                if(e1.getX() - e2.getX() > 100 && Math.abs(velocityX) > 100) {
-                    //left
-                    aiai.x-=screenX/5;
-                    Log.println(Log.ASSERT, "SAUER", "LEFT");
-                } else if (e2.getX() - e1.getX() > 100 && Math.abs(velocityX) > 100) {
-                    //right
-                    aiai.x+=screenX/5;
-                    Log.println(Log.ASSERT, "SAUER", "RIGHT");
-                }
-            } catch (Exception e) {
-                // nothing
-            }
-            return false;
-        }
 
-        @Override
-        public boolean onDown(MotionEvent e) {
-            return true;
-        }
-    };
 
 }
 
