@@ -74,6 +74,7 @@ public class GameView extends SurfaceView implements Runnable{
         while(isPlaying){
             update();
             draw();
+            moveObject();
             sleep();
         }
     }
@@ -103,38 +104,7 @@ public class GameView extends SurfaceView implements Runnable{
 //
 //            }
 //        }
-        if(ob1.y >= screenY){
-            ob1.setType((int)Math.floor(Math.random()*3+1));
-            ob1.setObject(null);
-            for(int i = 0; i == 1; i++){
-                ob1 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-            }
-            ob1.setY(-500);
-        }
-        if(ob2.y-500 >= screenY){
-            ob2.setType((int)Math.floor(Math.random()*3+1));
-            ob2.setObject(null);
-            ob2 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-            ob2.setY(-500);
-        }
-        if(ob3.y-1000 >= screenY){
-            ob3.setType((int)Math.floor(Math.random()*3+1));
-            ob3.setObject(null);
-            ob3 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-            ob3.setY(-500);
-        }
-        if(ob4.y-1500 >= screenY){
-            ob4.setType((int)Math.floor(Math.random()*3+1));
-            ob4.setObject(null);
-            ob4 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-            ob4.setY(-500);
-        }
-        if(ob5.y-2000 >= screenY){
-            ob5.setType((int)Math.floor(Math.random()*3+1));
-            ob5.setObject(null);
-            ob5 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-            ob5.setY(-500);
-        }
+
 
 //        if(ob1.y <= screenY){
 //            ob1.y = ob1.y + screenY ;
@@ -156,12 +126,11 @@ public class GameView extends SurfaceView implements Runnable{
             canvas.drawBitmap(aiai.getFrame(), aiai.x, aiai.y, paint);
             getHolder().unlockCanvasAndPost(canvas);
 
-            if (ob1.y <= -screenY) {
-                //Creates a new object for the obstacle
-                ob1.setType((int)Math.floor(Math.random()*3+1));
-                ob1.setY(screenY);
-
-            }
+//            if (ob1.y <= -screenY) {
+//                //Creates a new object for the obstacle
+//                ob1.setType((int)Math.floor(Math.random()*3+1));
+//                ob1.setY(screenY);
+//            }
         }
     }
     //waiting code (60fps)
@@ -188,6 +157,39 @@ public class GameView extends SurfaceView implements Runnable{
             thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void moveObject(){
+        if(ob1.y >= screenY){
+            ob1.setType((int)Math.floor(Math.random()*3+1));
+//            ob1.setObject(null);
+//            ob1 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+            ob1.setY(-500);
+        }
+        if(ob2.y-500 >= screenY){
+            ob2.setType((int)Math.floor(Math.random()*3+1));
+//            ob2.setObject(null);
+//            ob2 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+            ob2.setY(-500);
+        }
+        if(ob3.y-1000 >= screenY){
+            ob3.setType((int)Math.floor(Math.random()*3+1));
+//            ob3.setObject(null);
+//            ob3 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+            ob3.setY(-500);
+        }
+        if(ob4.y-1500 >= screenY){
+            ob4.setType((int)Math.floor(Math.random()*3+1));
+//            ob4.setObject(null);
+//            ob4 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+            ob4.setY(-500);
+        }
+        if(ob5.y-2000 >= screenY){
+            ob5.setType((int)Math.floor(Math.random()*3+1));
+//            ob5.setObject(null);
+//            ob5 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+            ob5.setY(-500);
         }
     }
 
