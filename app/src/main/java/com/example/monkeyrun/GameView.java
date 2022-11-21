@@ -60,6 +60,7 @@ public class GameView extends SurfaceView implements Runnable{
         aiai = new Aiai(screenX, screenY, getResources());
         background2.y = screenX;
         paint = new Paint();
+
     }
 
     public GameView(Context context) {

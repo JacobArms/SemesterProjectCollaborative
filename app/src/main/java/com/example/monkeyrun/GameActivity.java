@@ -12,7 +12,7 @@ public class GameActivity extends AppCompatActivity {
 
     private GameView gameView;
     private Aiai aiai;
-
+    private 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +22,12 @@ public class GameActivity extends AppCompatActivity {
         setContentView(gameView);
     }
 
+    this.setOnTouchListener(new OnSwipeTouchListener(context),   {
+        @Override
+        public void onSwipeLeft() {
+            // Whatever
+        }
+    });
     @Override
     protected void onPause() {
         super.onPause();
