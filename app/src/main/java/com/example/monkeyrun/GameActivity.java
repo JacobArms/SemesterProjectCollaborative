@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -12,7 +13,7 @@ public class GameActivity extends AppCompatActivity {
 
     private GameView gameView;
     private Aiai aiai;
-    private 
+    private GestureDetector.SimpleOnGestureListener gestureListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,12 +23,12 @@ public class GameActivity extends AppCompatActivity {
         setContentView(gameView);
     }
 
-    this.setOnTouchListener(new OnSwipeTouchListener(context),   {
-        @Override
-        public void onSwipeLeft() {
-            // Whatever
-        }
-    });
+//    this.setOnTouchListener(new OnSwipeTouchListener(context), gestureListener)  {
+//        @Override
+//        public void onSwipeLeft() {
+//            // Whatever
+//        }
+//    });
     @Override
     protected void onPause() {
         super.onPause();
