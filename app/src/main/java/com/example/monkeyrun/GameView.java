@@ -13,8 +13,12 @@ import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintSet;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class GameView extends SurfaceView implements Runnable{
     private Thread thread;
+    Timer timer;
     private Boolean isPlaying;
     private int screenX, screenY;
     private float screenRatioX, screenRatioY;
@@ -93,10 +97,17 @@ public class GameView extends SurfaceView implements Runnable{
             background2.y = background2.y -screenY*2 ;
         }
 
+//        if(aiai.y - aiai.height == ob3.y){
+//            if(aiai.x == ob3.x){
+//
+//            }
+//        }
         if(ob1.y >= screenY){
             ob1.setType((int)Math.floor(Math.random()*3+1));
             ob1.setObject(null);
-            ob1 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+//            for(int i = 0; ){
+//                ob1 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+//            }
             ob1.setY(-500);
         }
         if(ob2.y-500 >= screenY){
@@ -123,13 +134,6 @@ public class GameView extends SurfaceView implements Runnable{
             ob5 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
             ob5.setY(-500);
         }
-
-        if(aiai.y - aiai.height == ob3.y){
-            if(aiai.x == ob3.x){
-
-            }
-        }
-
 
 //        if(ob1.y <= screenY){
 //            ob1.y = ob1.y + screenY ;
