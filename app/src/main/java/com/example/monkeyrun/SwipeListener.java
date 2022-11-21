@@ -1,8 +1,10 @@
 package com.example.monkeyrun;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.SurfaceView;
 import android.view.View;
 import android.content.Context;
 import android.view.GestureDetector;
@@ -11,17 +13,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-public class SwipeListener implements OnTouchListener {
+public class SwipeListener extends SurfaceView implements OnTouchListener {
+    GestureListener gestureListener = new GestureListener();
     private final GestureDetector gestureDetector;
-
-    public SwipeListener (Context ctx, SimpleOnGestureListener gestureListener){
+    public SwipeListener (Context ctx){
+        super(ctx);
         gestureDetector = new GestureDetector(ctx, gestureListener);
     }
 
     public void onSwipeLeft() {
+        Log.println(Log.ASSERT, "SAUER", "SWIPE LEFT");
     }
 
     public void onSwipeRight() {
+        Log.println(Log.ASSERT, "SAUER", "SWIPE LEFT");
+
     }
 
     public boolean onTouch(View v, MotionEvent event) {

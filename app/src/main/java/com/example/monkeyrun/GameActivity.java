@@ -2,10 +2,16 @@ package com.example.monkeyrun;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.app.GameManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -13,6 +19,8 @@ public class GameActivity extends AppCompatActivity {
 
     private GameView gameView;
     private Aiai aiai;
+    private Context context;
+    private GameManager gameManager;
     private GestureDetector.SimpleOnGestureListener gestureListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +31,19 @@ public class GameActivity extends AppCompatActivity {
         setContentView(gameView);
     }
 
-//    this.setOnTouchListener(new OnSwipeTouchListener(context), gestureListener)  {
-//        @Override
-//        public void onSwipeLeft() {
-//            // Whatever
-//        }
-//    });
+    @SuppressLint("ClickableViewAccessibility")
+    public void surfaceCreated(SurfaceHolder holder) {
+        SurfaceHolder surfaceHolder = holder;
+        gameView.setOnTouchListener(new SwipeListener(context) {
+            @Override
+            public void onSwipeLeft() {
+                Log.println(Log.ASSERT, "SAUER", "SWIPE LEFT");
+            }
+            public void onSwipeRight() {
+                Log.println(Log.ASSERT, "SAUER", "SWIPE RIGHT");
+            }
+        });
+    }
     @Override
     protected void onPause() {
         super.onPause();
