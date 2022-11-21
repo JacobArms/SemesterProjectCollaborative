@@ -106,9 +106,9 @@ public class GameView extends SurfaceView implements Runnable{
         if(ob1.y >= screenY){
             ob1.setType((int)Math.floor(Math.random()*3+1));
             ob1.setObject(null);
-//            for(int i = 0; ){
-//                ob1 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-//            }
+            for(int i = 0; i == 1; i++){
+                ob1 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+            }
             ob1.setY(-500);
         }
         if(ob2.y-500 >= screenY){
