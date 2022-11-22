@@ -74,7 +74,11 @@ public class GameView extends SurfaceView implements Runnable{
         while(isPlaying){
             update();
             draw();
-            moveObject();
+            try{
+                moveObject();
+            }catch(Exception e){
+
+            }
             sleep();
         }
     }
