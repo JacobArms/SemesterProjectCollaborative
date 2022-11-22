@@ -9,11 +9,10 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="414dp"
-        android:layout_height="116dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_width="417dp"
+        android:layout_height="109dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/woodsign" />
 
     <ImageView
