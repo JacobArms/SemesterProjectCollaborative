@@ -33,16 +33,16 @@ public class GameActivity extends AppCompatActivity {
         gameView = new GameView(this, point.x, point.y);
         setContentView(gameView);
 
-        if(aiai.y - aiai.height == ob3.y){
-            if(aiai.x == ob3.x){
-                if(ob3.getType() == 3){
-                    score += 10;
-                }else if(ob3.getType() == 1 || ob3.getType() == 2){
-                    Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
-                    startActivity(intent);
-                }
-            }
-        }
+//        if(aiai.y - aiai.height == ob3.y){
+//            if(aiai.x == ob3.x){
+//                if(ob3.getType() == 3){
+//                    score += 10;
+//                }else if(ob3.getType() == 1 || ob3.getType() == 2){
+//                    Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
+//                    startActivity(intent);
+//                }
+//            }
+//        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
