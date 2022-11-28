@@ -104,7 +104,6 @@ public class GameView extends SurfaceView implements Runnable{
         }
 
 
-
 //        if(ob1.y <= screenY){
 //            ob1.y = ob1.y + screenY ;
 //        }
@@ -232,6 +231,12 @@ public boolean dispatchKeyEvent(KeyEvent event) {
     Log.i("key pressed", String.valueOf(event.getKeyCode()));
     return super.dispatchKeyEvent(event);
 }
+
+// If Swipe doesnt work, we can implement the arrow kets to stipe the monkey left and right
+//    public void keyTyped(KeyEvent event) {
+//        if (event.getKeyCode() == KeyEvent.) {
+//        }
+//    }
 
     public Thread getThread() {
         return thread;
