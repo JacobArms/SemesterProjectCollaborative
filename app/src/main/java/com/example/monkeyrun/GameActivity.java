@@ -22,6 +22,9 @@ public class GameActivity extends AppCompatActivity {
     private Context context;
     private GameManager gameManager;
     private GestureDetector.SimpleOnGestureListener gestureListener;
+    private Obstacle ob1,ob2,ob3,ob4,ob5;
+    private int score;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,17 @@ public class GameActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getSize(point);
         gameView = new GameView(this, point.x, point.y);
         setContentView(gameView);
+
+        if(aiai.y - aiai.height == ob3.y){
+            if(aiai.x == ob3.x){
+                if(ob3.getType() == 3){
+                    score += 10;
+                }else if(ob3.getType() == 1 || ob3.getType() == 2){
+                    Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
+                    startActivity(intent);
+                }
+            }
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")

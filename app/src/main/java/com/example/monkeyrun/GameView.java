@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
@@ -31,7 +32,7 @@ public class GameView extends SurfaceView implements Runnable{
     View.OnTouchListener gestureListener;
     private double objectOneX, objectTwoX, objectThreeX, objectFourX, objectFiveX;
     SurfaceView gameView = this;
-
+    private int score;
 
     public GameView(Context context, int screenX, int screenY) {
         super(context);
@@ -103,11 +104,6 @@ public class GameView extends SurfaceView implements Runnable{
             background2.y = background2.y -screenY*2 ;
         }
 
-//        if(aiai.y - aiai.height == ob3.y){
-//            if(aiai.x == ob3.x){
-//
-//            }
-//        }
 
 
 //        if(ob1.y <= screenY){
@@ -197,11 +193,11 @@ public class GameView extends SurfaceView implements Runnable{
         }
     }
 
-//
+
 //class swipeDetector extends GestureDetector.SimpleOnGestureListener {
 //    public boolean onSwipe(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 //        try {
-//            Log.println(Log.ASSERT, "SAUER", "POPUP CLOSED");
+//            Log.println(Log.ASSERT, "ARMS", "POPUP CLOSED");
 //            // right to left swipe
 //            if (e1.getX() - e2.getX() > 100 && Math.abs(velocityX) > 100) {
 //                //left
@@ -216,7 +212,74 @@ public class GameView extends SurfaceView implements Runnable{
 //    }
 //}
 
+//@Override
+//public boolean dispatchKeyEvent(KeyEvent KEvent)
+//{
+//    int keyaction = KEvent.getAction();
+//
+//    if(keyaction == KeyEvent.ACTION_DOWN)
+//    {
+//        int keycode = KEvent.getKeyCode();
+//        int keyunicode = KEvent.getUnicodeChar(KEvent.getMetaState() );
+//        char character = (char) keyunicode;
+//        Log.println(Log.ASSERT, "ARMS", "DEBUG MESSAGE KEY=" + character + " KEYCODE=" +  keycode + "");
+//    }
+//
+//
+//    return super.dispatchKeyEvent(KEvent);
+//}
+@Override
+public boolean dispatchKeyEvent(KeyEvent event) {
+    Log.i("key pressed", String.valueOf(event.getKeyCode()));
+    return super.dispatchKeyEvent(event);
+}
 
+    public Thread getThread() {
+        return thread;
+    }
 
+    public void setThread(Thread thread) {
+        this.thread = thread;
+    }
+
+    public Obstacle getOb1() {
+        return ob1;
+    }
+
+    public void setOb1(Obstacle ob1) {
+        this.ob1 = ob1;
+    }
+
+    public Obstacle getOb2() {
+        return ob2;
+    }
+
+    public void setOb2(Obstacle ob2) {
+        this.ob2 = ob2;
+    }
+
+    public Obstacle getOb3() {
+        return ob3;
+    }
+
+    public void setOb3(Obstacle ob3) {
+        this.ob3 = ob3;
+    }
+
+    public Obstacle getOb4() {
+        return ob4;
+    }
+
+    public void setOb4(Obstacle ob4) {
+        this.ob4 = ob4;
+    }
+
+    public Obstacle getOb5() {
+        return ob5;
+    }
+
+    public void setOb5(Obstacle ob5) {
+        this.ob5 = ob5;
+    }
 }
 
