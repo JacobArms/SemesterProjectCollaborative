@@ -43,12 +43,11 @@ public class GameView extends SurfaceView implements Runnable{
         background1= new Background(screenX, screenY, getResources());
         background2= new Background(screenX, screenY, getResources());
 
-        //The (int)Math.floor(Math.random()*6), decides whether or not the object is a banana, barrel, or sideways barrel
-        ob1= new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-        ob2= new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-        ob3= new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-        ob4= new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-        ob5= new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
+        ob1= new Obstacle(screenX, screenY, getResources());
+        ob2= new Obstacle(screenX, screenY, getResources());
+        ob3= new Obstacle(screenX, screenY, getResources());
+        ob4= new Obstacle(screenX, screenY, getResources());
+        ob5= new Obstacle(screenX, screenY, getResources());
 
         objectOneX = screenX - ob1.object.getWidth();
         objectTwoX = screenX * 0.8 - ob2.object.getWidth();

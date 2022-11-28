@@ -13,8 +13,9 @@ public class Obstacle {
     Bitmap object;
     private int type;
 
-    public Obstacle (int type, double screenX, int screenY, Resources res ){
-        this.type = type;
+    public Obstacle (double screenX, int screenY, Resources res ){
+        //The (int)Math.floor(Math.random()*6), decides whether or not the object is a banana, barrel, or sideways barrel
+        type = (int)Math.floor(Math.random()*3+1);
         if (type == 1) {
             object = BitmapFactory.decodeResource(res, R.drawable.normal_barrel);
         }else if(type == 2){
