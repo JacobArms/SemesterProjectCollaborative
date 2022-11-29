@@ -117,7 +117,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(OpeningScreenActivity.this, GameActivity.class);
+                        Intent intent = new Intent(OpeningScreenActivity.this, MonkeyRunning.class);
                         startActivity(intent);
                         finish();
                         mp.stop();
