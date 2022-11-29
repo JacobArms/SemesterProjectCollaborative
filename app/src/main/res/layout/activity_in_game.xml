@@ -4,15 +4,4 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InGameActivity">
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="324dp"
-        android:layout_height="426dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="102dp"
-        android:text="Button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".InGameActivity"/>
