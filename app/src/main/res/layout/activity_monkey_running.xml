@@ -7,18 +7,19 @@
     tools:context=".MonkeyRunning">
 
     <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="597dp"
-        android:layout_height="930dp"
+        android:id="@+id/grass1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:srcCompat="@drawable/grass_sample"
         tools:layout_editor_absoluteX="-93dp"
         tools:layout_editor_absoluteY="-58dp" />
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="597dp"
-        android:layout_height="930dp"
-        app:srcCompat="@drawable/grass_sample"
-        tools:layout_editor_absoluteX="-93dp"
-        tools:layout_editor_absoluteY="-58dp" />
+<!--    <ImageView-->
+<!--        android:id="@+id/grass2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:srcCompat="@drawable/grass_sample"-->
+<!--        tools:layout_editor_absoluteX="-93dp"-->
+<!--        tools:layout_editor_absoluteY="-58dp" />-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
