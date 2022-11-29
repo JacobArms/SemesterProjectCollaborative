@@ -15,6 +15,7 @@ import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -25,6 +26,7 @@ public class GameActivity extends AppCompatActivity {
     private GestureDetector.SimpleOnGestureListener gestureListener;
     private Obstacle ob1,ob2,ob3,ob4,ob5;
     private int score;
+//    private ImageView monkeyAiai;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,21 @@ public class GameActivity extends AppCompatActivity {
 //                }
 //            }
 //        }
-
+//        monkeyAiai.setOnTouchListener(new OnSwipeTouchListener(GameActivity.this) {
+//            public void onSwipeTop() {
+//                Toast.makeText(GameActivity.this, "top", Toast.LENGTH_SHORT).show();
+//            }
+//            public void onSwipeRight() {
+//                Toast.makeText(GameActivity.this, "right", Toast.LENGTH_SHORT).show();
+//            }
+//            public void onSwipeLeft() {
+//                Toast.makeText(GameActivity.this, "left", Toast.LENGTH_SHORT).show();
+//            }
+//            public void onSwipeBottom() {
+//                Toast.makeText(GameActivity.this, "bottom", Toast.LENGTH_SHORT).show();
+//            }
+//
+//        });
     }
 
     @SuppressLint("ClickableViewAccessibility")
