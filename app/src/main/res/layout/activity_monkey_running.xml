@@ -14,12 +14,12 @@
         tools:layout_editor_absoluteX="-93dp"
         tools:layout_editor_absoluteY="-58dp" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/grass2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:srcCompat="@drawable/grass_sample"-->
-<!--        tools:layout_editor_absoluteX="-93dp"-->
-<!--        tools:layout_editor_absoluteY="-58dp" />-->
+    <ImageView
+        android:id="@+id/grass2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/grass_sample"
+        tools:layout_editor_absoluteX="-93dp"
+        tools:layout_editor_absoluteY="-58dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
