@@ -13,6 +13,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
 public class GameActivity extends AppCompatActivity {
@@ -43,6 +44,15 @@ public class GameActivity extends AppCompatActivity {
 //                }
 //            }
 //        }
+
+        //Grabs the image of Dr Heinz
+        ImageView imageView = (ImageView) findViewById(R.id.drHeinz);
+        //Sets the xFrom, xTo, yFrom, and yTo
+        TranslateAnimation animation = new TranslateAnimation(-160.0f,160.0f, 0.0f, 0.0f);
+        animation.setDuration(800);    //animation duration, impacts the speed of the animation as well
+        animation.setRepeatCount(5);    //Sets the repeat count
+        animation.setRepeatMode(2);     //Repeat animation from (left to right, right to left)
+        imageView.startAnimation(animation);    //Starts the animation of the image on the page
     }
 
     @SuppressLint("ClickableViewAccessibility")
