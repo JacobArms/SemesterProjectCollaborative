@@ -7,12 +7,12 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
 public class MonkeyRunning extends AppCompatActivity {
+    private Aiai aiai;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monkey_running);
-
         //Grabs the image of Dr Heinz
         ImageView grass1 = (ImageView) findViewById(R.id.grass1);
         //Sets the xFrom, xTo, yFrom, and yTo
