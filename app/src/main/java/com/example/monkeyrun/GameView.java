@@ -41,9 +41,11 @@ public class GameView extends SurfaceView implements Runnable{
         this.screenY=screenY;
         screenRatioX = 1920f / screenX;
         screenRatioY = 1080f/ screenY;
+        screenRatioX = 1920f / screenX;
+        screenRatioY = 1080f / screenY;
         background1= new Background(screenX, screenY, getResources());
         background2= new Background(screenX, screenY, getResources());
-
+        background2.x = screenX;
         ob1= new Obstacle(screenX, screenY, getResources());
         ob2= new Obstacle(screenX, screenY, getResources());
         ob3= new Obstacle(screenX, screenY, getResources());
@@ -87,8 +89,8 @@ public class GameView extends SurfaceView implements Runnable{
     //update position of drawables
     private void update(){
         float speed = 25;
-        background1.y += speed;
-        background2.y += speed;
+        background1.y += screenRatioY;
+        background2.y += screenRatioY;
         ob1.y += speed;
         ob2.y += speed;
         ob3.y += speed;
@@ -100,9 +102,10 @@ public class GameView extends SurfaceView implements Runnable{
         if(background1.y >= screenY){
             background1.y = -screenY;
         }
-        if(background2.y-3250 >= screenY){
+        if(background2.y >= screenY){
             background2.y = background2.y -screenY*2 ;
         }
+
 
 
 //        if(ob1.y <= screenY){
@@ -115,16 +118,10 @@ public class GameView extends SurfaceView implements Runnable{
         if (getHolder().getSurface().isValid()){
             Canvas canvas = getHolder().lockCanvas();
 
-            if (counter==0){
-                    canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
-                    Log.println(Log.ASSERT, "ARMS", "OBJECT DRAWN");
-                    counter++;
-
-            }else if (ob1.y>screenY){
-                counter=0;
-            }
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
-            canvas.drawBitmap(background2.background, background2.x, background2.y-3250, paint);
+            canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
+
+            canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
             canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
             canvas.drawBitmap(ob2.object,(float) objectTwoX, ob2.y-500, paint);
             canvas.drawBitmap(ob3.object, (float) objectThreeX, ob3.y-1000, paint);
@@ -168,6 +165,21 @@ public class GameView extends SurfaceView implements Runnable{
             e.printStackTrace();
         }
     }
+//    public boolean onTouchEvent(MotionEvent event){
+//        switch(event.getAction()){
+//            case.MotionEvent.ACTION_DOWN:
+//                if (event.getX() < screenX/2){
+//
+//                } else {
+//
+//                }
+//                break;
+//            case.MotionEvent.ACTION_UP:
+//                break;
+//
+//        }
+//        return true;
+//    }
 
     public void moveObject(){
         if(ob1.y >= screenY){
