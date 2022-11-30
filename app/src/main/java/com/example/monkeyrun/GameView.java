@@ -115,13 +115,13 @@ public class GameView extends SurfaceView implements Runnable{
         if (getHolder().getSurface().isValid()){
             Canvas canvas = getHolder().lockCanvas();
 
-            if(counter==0){
-                for(int i=0;i<1;i++){
+            if (counter==0){
                     canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
                     Log.println(Log.ASSERT, "ARMS", "OBJECT DRAWN");
                     counter++;
-                }
 
+            }else if (ob1.y>screenY){
+                counter=0;
             }
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
             canvas.drawBitmap(background2.background, background2.x, background2.y-3250, paint);
@@ -140,7 +140,7 @@ public class GameView extends SurfaceView implements Runnable{
 //                ob1.setY(screenY);
 //            }
         }
-        counter = 0;
+
     }
     //waiting code (60fps)
     private void sleep(){
