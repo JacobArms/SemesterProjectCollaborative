@@ -17,16 +17,20 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class GameActivity extends AppCompatActivity {
+import java.lang.reflect.Array;
 
+public class GameActivity extends AppCompatActivity {
+//    private final Bundle bundle = getIntent().getExtras();
+//    public int diff = bundle.getInt("difficulty");
     private GameView gameView;
     private Aiai aiai;
     private Context context;
     private GameManager gameManager;
     private GestureDetector.SimpleOnGestureListener gestureListener;
-    private Obstacle ob1,ob2,ob3,ob4,ob5;
+    private Obstacle ob1, ob2, ob3, ob4, ob5;
     private int score;
 //    private ImageView monkeyAiai;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,17 +75,18 @@ public class GameActivity extends AppCompatActivity {
             public void onSwipeLeft() {
                 Log.println(Log.ASSERT, "SAUER", "SWIPE LEFT");
             }
+
             public void onSwipeRight() {
                 Log.println(Log.ASSERT, "SAUER", "SWIPE RIGHT");
             }
         });
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         gameView.pause();
     }
-
 
 
     @Override
@@ -90,11 +95,12 @@ public class GameActivity extends AppCompatActivity {
         gameView.resume();
     }
 
-    public void hitObstacle(){
+    public void hitObstacle() {
         Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
         startActivity(intent);
     }
-//    public void onSwipe(View view){
+
+    //    public void onSwipe(View view){
 //        view.setOnClickListener(new SwipeListener(context));
 //    }
 }

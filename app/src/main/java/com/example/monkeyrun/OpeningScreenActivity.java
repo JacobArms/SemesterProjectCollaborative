@@ -47,7 +47,7 @@ public class OpeningScreenActivity extends AppCompatActivity{
     boolean wasPlaying = false;
     AudioManager audioManager;
     // Sets the difficulty of the game by setting the int to either 1, 2, or 3
-    public static int diffNum = 2;
+    public int diffNum = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +118,9 @@ public class OpeningScreenActivity extends AppCompatActivity{
                     @Override
                     public void run() {
                         Intent intent = new Intent(OpeningScreenActivity.this, GameActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("difficulty", diffNum);
+                        intent.putExtras(bundle);
                         startActivity(intent);
                         finish();
                         mp.stop();
@@ -221,4 +224,6 @@ public class OpeningScreenActivity extends AppCompatActivity{
     public void setDiffNum(int diffNum) {
         this.diffNum = diffNum;
     }
+
+
 }

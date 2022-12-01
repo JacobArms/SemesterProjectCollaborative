@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
@@ -27,6 +28,11 @@ public class GameView extends SurfaceView implements Runnable{
     private Background background1, background2;
     private Obstacle ob1,ob2,ob3,ob4,ob5;
     private Aiai aiai;
+    private Baby baby;
+    private GonGon gonGon;
+    private Character character;
+    private int diff = 3;
+    private int charPos = 3;
     private boolean right = false, left = false;
     private GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
@@ -59,8 +65,13 @@ public class GameView extends SurfaceView implements Runnable{
         objectFiveX = screenX * 0.2 - ob5.object.getWidth();
 
 //        ob2.addPaddingLeftForBitmap(ob2.object, 500);
-
-        aiai = new Aiai(screenX, screenY, getResources());
+//        if (diff==2) {
+            aiai = new Aiai(screenX, screenY, getResources());
+//        } else if(diff==3){
+            gonGon = new GonGon(screenX, screenY, getResources());
+//        } else{
+            baby = new Baby(screenX, screenY, getResources());
+//        }
         background2.y = screenX;
         paint = new Paint();
 
@@ -128,7 +139,13 @@ public class GameView extends SurfaceView implements Runnable{
             canvas.drawBitmap(ob4.object, (float) objectFourX, ob4.y-1500, paint);
             canvas.drawBitmap(ob5.object, (float) objectFiveX, ob5.y-2000, paint);
 
+
+
             canvas.drawBitmap(aiai.getFrame(), aiai.x, aiai.y, paint);
+            canvas.drawBitmap(gonGon.getFrame(), gonGon.x, gonGon.y, paint);
+            canvas.drawBitmap(baby.getFrame(), baby.x, baby.y, paint);
+
+
             getHolder().unlockCanvasAndPost(canvas);
 
 //            if (ob1.y <= -screenY) {
@@ -165,21 +182,40 @@ public class GameView extends SurfaceView implements Runnable{
             e.printStackTrace();
         }
     }
-//    public boolean onTouchEvent(MotionEvent event){
-//        switch(event.getAction()){
-//            case.MotionEvent.ACTION_DOWN:
-//                if (event.getX() < screenX/2){
-//
-//                } else {
-//
-//                }
-//                break;
-//            case.MotionEvent.ACTION_UP:
-//                break;
-//
-//        }
-//        return true;
-//    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                if(event.getX() < screenX/2 ){
+                    Log.println(Log.ASSERT, "SAUER", "Left click");
+                    if (charPos!=1) {
+
+                        aiai.x -= screenX / 5;
+//                        gonGon.x -= screenX / 5;
+                        baby.x -= screenX / 5;
+
+
+                        charPos--;
+                    }
+                }else {
+                    Log.println(Log.ASSERT, "SAUER", "right click");
+                    if (charPos!=5) {
+
+
+//                        aiai.x += screenX / 5;
+                        gonGon.x += screenX / 5;
+                        baby.x += screenX / 5;
+
+                        charPos++;
+                    }
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+        }
+        return true;
+    }
 
     public void moveObject(){
         if(ob1.y >= screenY){
@@ -213,53 +249,6 @@ public class GameView extends SurfaceView implements Runnable{
             ob5.setY(-500);
         }
     }
-
-
-//class swipeDetector extends GestureDetector.SimpleOnGestureListener {
-//    public boolean onSwipe(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-//        try {
-//            Log.println(Log.ASSERT, "ARMS", "POPUP CLOSED");
-//            // right to left swipe
-//            if (e1.getX() - e2.getX() > 100 && Math.abs(velocityX) > 100) {
-//                //left
-//            } else if (e2.getX() - e1.getX() > 100 && Math.abs(velocityX) > 100) {
-//                //right
-//                right = true;
-//            }
-//        } catch (Exception e) {
-//            // nothing
-//        }
-//        return true;
-//    }
-//}
-
-//@Override
-//public boolean dispatchKeyEvent(KeyEvent KEvent)
-//{
-//    int keyaction = KEvent.getAction();
-//
-//    if(keyaction == KeyEvent.ACTION_DOWN)
-//    {
-//        int keycode = KEvent.getKeyCode();
-//        int keyunicode = KEvent.getUnicodeChar(KEvent.getMetaState() );
-//        char character = (char) keyunicode;
-//        Log.println(Log.ASSERT, "ARMS", "DEBUG MESSAGE KEY=" + character + " KEYCODE=" +  keycode + "");
-//    }
-//
-//
-//    return super.dispatchKeyEvent(KEvent);
-//}
-@Override
-public boolean dispatchKeyEvent(KeyEvent event) {
-    Log.i("key pressed", String.valueOf(event.getKeyCode()));
-    return super.dispatchKeyEvent(event);
-}
-
-// If Swipe doesnt work, we can implement the arrow kets to stipe the monkey left and right
-//    public void keyTyped(KeyEvent event) {
-//        if (event.getKeyCode() == KeyEvent.) {
-//        }
-//    }
 
     public Thread getThread() {
         return thread;

@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 
 import java.util.ResourceBundle;
 
-public class Aiai {
+public class Aiai{
 
     int x, y, width, height, frameNum = 0;
     Bitmap aiai1, aiai2, aiai3, aiai4, aiai5, aiai6;
@@ -19,8 +19,8 @@ public class Aiai {
         aiai5 = BitmapFactory.decodeResource(res, R.drawable.aia_f_five);
         aiai6 = BitmapFactory.decodeResource(res, R.drawable.aia_f_six);
 
-        width = aiai1.getWidth();
-        height = aiai1.getWidth();
+        width = aiai1.getWidth()+30;
+        height = aiai1.getWidth()+30;
 
         aiai1 = Bitmap.createScaledBitmap(aiai1, width, height, false);
         aiai2 = Bitmap.createScaledBitmap(aiai2, width, height, false);
