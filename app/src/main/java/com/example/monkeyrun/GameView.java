@@ -33,7 +33,7 @@ public class GameView extends SurfaceView implements Runnable{
     private Baby baby;
     private GonGon gonGon;
     private Character character;
-    private int diff = 2;
+    private int diff = OpeningScreenActivity.diffNum;
     private int charPos = 3;
     private boolean right = false, left = false;
     private GestureDetector gestureDetector;
@@ -102,7 +102,7 @@ public class GameView extends SurfaceView implements Runnable{
 
     //update position of drawables
     private void update(){
-        float speed = 25;
+        float speed = diff * 10;
         background1.y += screenRatioY;
         background2.y += screenRatioY;
         ob1.y += speed;
