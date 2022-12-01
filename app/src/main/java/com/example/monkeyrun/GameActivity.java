@@ -30,7 +30,7 @@ public class GameActivity extends AppCompatActivity {
     private Obstacle ob1, ob2, ob3, ob4, ob5;
     private int score;
 //    private ImageView monkeyAiai;
-
+//jacob messed up
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
