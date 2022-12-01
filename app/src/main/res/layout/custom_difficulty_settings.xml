@@ -26,7 +26,7 @@
             android:layout_marginTop="82dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baby_monkey_temp" />
+            app:srcCompat="@drawable/baby_cheer1" />
 
         <Button
             android:id="@+id/mediumButton"
@@ -34,10 +34,10 @@
             android:layout_height="wrap_content"
             android:layout_row="1"
             android:layout_column="1"
-            android:layout_marginTop="196dp"
+            android:layout_marginTop="192dp"
             android:text="Medium"
             app:layout_constraintEnd_toStartOf="@+id/hardButton"
-            app:layout_constraintHorizontal_bias="0.456"
+            app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toEndOf="@+id/easyButton"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,10 +47,10 @@
             android:layout_height="wrap_content"
             android:layout_row="1"
             android:layout_column="2"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="192dp"
             android:text="Hard"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.894"
+            app:layout_constraintHorizontal_bias="0.863"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,7 +65,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/aiai_image_temp" />
+            app:srcCompat="@drawable/aiai_cheer1" />
 
         <Button
             android:id="@+id/easyButton"
@@ -73,7 +73,7 @@
             android:layout_height="47dp"
             android:layout_row="1"
             android:layout_column="0"
-            android:layout_marginTop="196dp"
+            android:layout_marginTop="192dp"
             android:text="Easy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.134"
@@ -90,7 +90,7 @@
             android:layout_marginTop="71dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/gon_gon_temp_image" />
+            app:srcCompat="@drawable/gon_cheer1" />
 
         <ImageView
             android:id="@+id/exitButton"
