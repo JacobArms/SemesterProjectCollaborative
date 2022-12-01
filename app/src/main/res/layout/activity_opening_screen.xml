@@ -105,11 +105,10 @@
         android:backgroundTint="@color/white"
         android:onClick="ShowDiffPopup"
         app:layout_constraintEnd_toStartOf="@+id/Highscore"
-        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/diffbutton" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
