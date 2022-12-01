@@ -21,7 +21,7 @@ import java.lang.reflect.Array;
 
 public class GameActivity extends AppCompatActivity {
 //    private final Bundle bundle = getIntent().getExtras();
-//    public int diff = bundle.getInt("difficulty");
+//    int diff = bundle.getInt("difficulty");
     private GameView gameView;
     private Aiai aiai;
     private Context context;

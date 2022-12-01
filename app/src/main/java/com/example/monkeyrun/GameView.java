@@ -1,9 +1,11 @@
 package com.example.monkeyrun;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -31,7 +33,7 @@ public class GameView extends SurfaceView implements Runnable{
     private Baby baby;
     private GonGon gonGon;
     private Character character;
-    private int diff = 3;
+    private int diff = 2;
     private int charPos = 3;
     private boolean right = false, left = false;
     private GestureDetector gestureDetector;
@@ -40,6 +42,7 @@ public class GameView extends SurfaceView implements Runnable{
     SurfaceView gameView = this;
     private int score;
     int counter = 0;
+    int x , y;
 
     public GameView(Context context, int screenX, int screenY) {
         super(context);
@@ -116,7 +119,11 @@ public class GameView extends SurfaceView implements Runnable{
         if(background2.y >= screenY){
             background2.y = background2.y -screenY*2 ;
         }
-
+//        double width = ob1.getX();
+//        int height=ob1.getY();
+//        Rect getCollisionShape(){
+//            return new Rect(x,y,(int)(x+width),y+height);
+//        }
 
 
 //        if(ob1.y <= screenY){
@@ -138,12 +145,16 @@ public class GameView extends SurfaceView implements Runnable{
             canvas.drawBitmap(ob3.object, (float) objectThreeX, ob3.y-1000, paint);
             canvas.drawBitmap(ob4.object, (float) objectFourX, ob4.y-1500, paint);
             canvas.drawBitmap(ob5.object, (float) objectFiveX, ob5.y-2000, paint);
+            if (diff==2) {
+                canvas.drawBitmap(aiai.getFrame(), aiai.x, aiai.y, paint);
+            } else if(diff==3){
+                canvas.drawBitmap(gonGon.getFrame(), gonGon.x, gonGon.y, paint);
+            } else{
+                canvas.drawBitmap(baby.getFrame(), baby.x, baby.y, paint);
+            }
 
 
 
-            canvas.drawBitmap(aiai.getFrame(), aiai.x, aiai.y, paint);
-            canvas.drawBitmap(gonGon.getFrame(), gonGon.x, gonGon.y, paint);
-            canvas.drawBitmap(baby.getFrame(), baby.x, baby.y, paint);
 
 
             getHolder().unlockCanvasAndPost(canvas);
@@ -192,7 +203,7 @@ public class GameView extends SurfaceView implements Runnable{
                     if (charPos!=1) {
 
                         aiai.x -= screenX / 5;
-//                        gonGon.x -= screenX / 5;
+                        gonGon.x -= screenX / 5;
                         baby.x -= screenX / 5;
 
 
@@ -203,7 +214,7 @@ public class GameView extends SurfaceView implements Runnable{
                     if (charPos!=5) {
 
 
-//                        aiai.x += screenX / 5;
+                        aiai.x += screenX / 5;
                         gonGon.x += screenX / 5;
                         baby.x += screenX / 5;
 
