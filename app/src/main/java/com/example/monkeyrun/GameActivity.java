@@ -7,6 +7,7 @@ import android.app.GameManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -39,6 +40,14 @@ public class GameActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getSize(point);
         gameView = new GameView(this, point.x, point.y);
         setContentView(gameView);
+//        Rect obstacleRect = new Rect((int)ob1.x,ob1.y,(int)(ob1.x+ob1.object.getWidth()),ob1.object.getHeight());
+//        Rect monkeyRect = new Rect(aiai.x,aiai.y,aiai.x+aiai.aiai1.getWidth(),aiai.aiai1.getHeight());
+//
+//        if(obstacleRect.intersect(monkeyRect) && ob1.getType() == 1){
+//            Log.println(Log.ASSERT, "ARMS", "COLLIDED");
+//            Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
+//            startActivity(intent);
+//        }
 
 //        if(aiai.y - aiai.height == ob3.y){
 //            if(aiai.x == ob3.x){

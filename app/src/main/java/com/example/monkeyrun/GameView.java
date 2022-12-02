@@ -3,7 +3,10 @@ package com.example.monkeyrun;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import android.content.res.Resources;
 
 public class GameView extends SurfaceView implements Runnable{
     private Thread thread;
@@ -43,6 +47,9 @@ public class GameView extends SurfaceView implements Runnable{
     private int score;
     int counter = 0;
     int x , y;
+//    Rect obstacleRect = new Rect((int)ob1.x,ob1.y,(int)(ob1.x+ob1.object.getWidth()),ob1.object.getHeight());
+//    Rect monkeyRect = new Rect(aiai.x,aiai.y,aiai.x+aiai.aiai1.getWidth(),aiai.aiai1.getHeight());
+//    Resource res;
 
     public GameView(Context context, int screenX, int screenY) {
         super(context);
@@ -68,13 +75,10 @@ public class GameView extends SurfaceView implements Runnable{
         objectFiveX = screenX * 0.2 - ob5.object.getWidth();
 
 //        ob2.addPaddingLeftForBitmap(ob2.object, 500);
-//        if (diff==2) {
+        //Draws the different characters for the different difficulties
             aiai = new Aiai(screenX, screenY, getResources());
-//        } else if(diff==3){
             gonGon = new GonGon(screenX, screenY, getResources());
-//        } else{
             baby = new Baby(screenX, screenY, getResources());
-//        }
         background2.y = screenX;
         paint = new Paint();
 
@@ -119,6 +123,8 @@ public class GameView extends SurfaceView implements Runnable{
         if(background2.y >= screenY){
             background2.y = background2.y -screenY*2 ;
         }
+//        int type = (int)Math.floor(Math.random()*3+1);
+//
 //        double width = ob1.getX();
 //        int height=ob1.getY();
 //        Rect getCollisionShape(){
@@ -126,8 +132,11 @@ public class GameView extends SurfaceView implements Runnable{
 //        }
 
 
+            //Creates a new object for the obstacle
+
+
 //        if(ob1.y <= screenY){
-//            ob1.y = ob1.y + screenY ;
+//
 //        }
 
     }
@@ -139,7 +148,7 @@ public class GameView extends SurfaceView implements Runnable{
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
             canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
 
-            canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
+//            canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
             canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
             canvas.drawBitmap(ob2.object,(float) objectTwoX, ob2.y-500, paint);
             canvas.drawBitmap(ob3.object, (float) objectThreeX, ob3.y-1000, paint);
@@ -152,18 +161,29 @@ public class GameView extends SurfaceView implements Runnable{
             } else{
                 canvas.drawBitmap(baby.getFrame(), baby.x, baby.y, paint);
             }
-
-
-
-
+//            if(ob1.getY() >= screenY){
+//                int type = (int)Math.floor(Math.random()*3+1);
+//
+//                if (type == 1) {
+//                    ob1.setObject(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.banana));
+////                    ob1.object.setWidth(200);
+////                    getResizedBitmap(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.banana), (int) objectOneX, ob1.y, 100, 100);
+////                    ob1.setX(screenX - ob1.object.getWidth() - 2000);
+//
+//                }else if(type == 2){
+//                    ob1.setObject(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.normal_barrel));
+////                    ob1.object.setWidth(200);
+////                    ob1.setX(screenX - ob1.object.getWidth() - 1000);
+//                }else if(type == 3){
+//                    ob1.setObject(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.sideways_barrel));
+////                    ob1.object.setWidth(200);
+////                    ob1.setX(screenX - ob1.object.getWidth() - 1000);
+//                }
+//            }
 
             getHolder().unlockCanvasAndPost(canvas);
 
-//            if (ob1.y <= -screenY) {
-//                //Creates a new object for the obstacle
-//                ob1.setType((int)Math.floor(Math.random()*3+1));
-//                ob1.setY(screenY);
-//            }
+
         }
 
     }
@@ -260,6 +280,22 @@ public class GameView extends SurfaceView implements Runnable{
             ob5.setY(-500);
         }
     }
+
+//    public Bitmap getResizedBitmap(Bitmap bm, int x, int y, int newHeight, int newWidth){
+//        int height = ob1.object.getHeight();
+//        int width = ob1.object.getWidth();
+//
+//        float scaleWidth = ((float) newWidth) / width;
+//        float scaleHeight = ((float) newHeight) / height;
+//
+//        Matrix matrix = new Matrix();
+//        matrix.postScale(scaleWidth, scaleHeight);
+//
+//        Bitmap resizedBitmap = Bitmap.createBitmap(bm, x, y, width, height, matrix, false);
+//
+//        return resizedBitmap;
+//    }
+
 
     public Thread getThread() {
         return thread;

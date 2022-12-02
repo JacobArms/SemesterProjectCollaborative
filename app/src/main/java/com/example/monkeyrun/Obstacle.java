@@ -14,15 +14,16 @@ public class Obstacle {
     private int type;
 
     public Obstacle (double screenX, int screenY, Resources res ){
-        //The (int)Math.floor(Math.random()*6), decides whether or not the object is a banana, barrel, or sideways barrel
+//        The (int)Math.floor(Math.random()*6), decides whether or not the object is a banana, barrel, or sideways barrel
         type = (int)Math.floor(Math.random()*3+1);
-        if (type == 1) {
+        if (type == 1){
             object = BitmapFactory.decodeResource(res, R.drawable.normal_barrel);
         }else if(type == 2){
             object = BitmapFactory.decodeResource(res, R.drawable.sideways_barrel);
         }else if(type == 3){
             object = BitmapFactory.decodeResource(res, R.drawable.banana);
         }
+
         object = Bitmap.createScaledBitmap(object, (int)screenX/5, (int)screenX/5, false);
         x = screenX/2 - object.getWidth()/2;
     }
@@ -33,6 +34,7 @@ public class Obstacle {
 //        canvas.drawBitmap(bitmap, paddingLeft, 0, null);
 //        return outputBitmap;
 //    }
+
     public double getX() {
         return x;
     }
