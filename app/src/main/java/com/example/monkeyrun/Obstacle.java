@@ -9,13 +9,15 @@ import android.graphics.Color;
 
 public class Obstacle {
     double x = 0;
-    int y = 0;
+    int y = 0, width, height;
     Bitmap object;
     private int type;
 
-    public Obstacle (double screenX, int screenY, Resources res ){
+    public Obstacle (double screenX, int screenY, Resources res, int type ){
         //The (int)Math.floor(Math.random()*6), decides whether or not the object is a banana, barrel, or sideways barrel
-        type = (int)Math.floor(Math.random()*3+1);
+        width = object.getWidth()/5;
+        height = object.getHeight()/5;
+
         if (type == 1) {
             object = BitmapFactory.decodeResource(res, R.drawable.normal_barrel);
         }else if(type == 2){

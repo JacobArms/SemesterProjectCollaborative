@@ -3,6 +3,7 @@ package com.example.monkeyrun;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -55,11 +56,11 @@ public class GameView extends SurfaceView implements Runnable{
         background1= new Background(screenX, screenY, getResources());
         background2= new Background(screenX, screenY, getResources());
         background2.x = screenX;
-        ob1= new Obstacle(screenX, screenY, getResources());
-        ob2= new Obstacle(screenX, screenY, getResources());
-        ob3= new Obstacle(screenX, screenY, getResources());
-        ob4= new Obstacle(screenX, screenY, getResources());
-        ob5= new Obstacle(screenX, screenY, getResources());
+        ob1= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        ob2= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        ob3= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        ob4= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        ob5= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
 
         objectOneX = screenX - ob1.object.getWidth();
         objectTwoX = screenX * 0.8 - ob2.object.getWidth();
@@ -68,13 +69,11 @@ public class GameView extends SurfaceView implements Runnable{
         objectFiveX = screenX * 0.2 - ob5.object.getWidth();
 
 //        ob2.addPaddingLeftForBitmap(ob2.object, 500);
-//        if (diff==2) {
+
             aiai = new Aiai(screenX, screenY, getResources());
-//        } else if(diff==3){
             gonGon = new GonGon(screenX, screenY, getResources());
-//        } else{
             baby = new Baby(screenX, screenY, getResources());
-//        }
+
         background2.y = screenX;
         paint = new Paint();
 
@@ -111,7 +110,11 @@ public class GameView extends SurfaceView implements Runnable{
         ob4.y += speed;
         ob5.y += speed;
 
-        if (left)
+        if(ob1.getY() >= screenY) {
+            Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
+            ob1.setObject(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.normal_barrel));
+            ob1.object.setWidth(ob1.object.getWidth() - 10);
+        }
 
         if(background1.y >= screenY){
             background1.y = -screenY;
@@ -153,6 +156,16 @@ public class GameView extends SurfaceView implements Runnable{
                 canvas.drawBitmap(baby.getFrame(), baby.x, baby.y, paint);
             }
 
+            if(ob1.getY() >= screenY){
+                    ob1.setType(2);
+//                if(type == 1){
+//                    ob1.setObject(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.banana));
+//                }else if(type == 2){
+//                    ob1.setObject(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.sideways_barrel));
+//                }else if(type == 3){
+//                    ob1.setObject(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.normal_barrel));
+//                }
+            }
 
 
 
