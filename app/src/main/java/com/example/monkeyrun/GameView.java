@@ -110,9 +110,25 @@ public class GameView extends SurfaceView implements Runnable{
         ob4.y += speed;
         ob5.y += speed;
 
-        if(ob3.getY() >= screenY) {
+        if(ob1.getY() >= screenY + 100) {
+            Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
+            ob1= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        }
+        if(ob2.getY() >= screenY + 500) {
+            Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
+            ob2= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        }
+        if(ob3.getY() >= screenY + 1000) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
             ob3= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        }
+        if(ob4.getY() >= screenY + 1500) {
+            Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
+            ob4= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        }
+        if(ob5.getY() >= screenY + 2000) {
+            Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
+            ob5= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
         }
 
         if(background1.y >= screenY){
