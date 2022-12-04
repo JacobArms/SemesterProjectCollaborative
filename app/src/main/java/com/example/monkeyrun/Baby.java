@@ -3,6 +3,7 @@ package com.example.monkeyrun;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 
 public class Baby {
     int x, y, width, height, frameNum = 0;
@@ -46,5 +47,9 @@ public class Baby {
         }else{
             return baby6;
         }
+    }
+
+    Rect getCollisionShape(){
+        return new Rect(x,y,x + width,y + height);
     }
 }

@@ -3,6 +3,7 @@ package com.example.monkeyrun;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 
 import java.util.ResourceBundle;
 
@@ -49,6 +50,10 @@ public class Aiai{
         }else{
             return aiai6;
         }
+    }
+
+    Rect getCollisionShape(){
+        return new Rect(x,y,x + width,y + height);
     }
 
 }

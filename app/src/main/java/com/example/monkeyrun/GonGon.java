@@ -3,6 +3,7 @@ package com.example.monkeyrun;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 
 public class GonGon{
     int x, y, width, height, frameNum = 0;
@@ -50,5 +51,9 @@ public class GonGon{
         }else {
             return gongon7;
         }
+    }
+
+    Rect getCollisionShape(){
+        return new Rect(x,y,x + width,y + height);
     }
 }
