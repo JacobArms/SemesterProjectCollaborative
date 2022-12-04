@@ -62,11 +62,11 @@ public class GameView extends SurfaceView implements Runnable{
         background1= new Background(screenX, screenY, getResources());
         background2= new Background(screenX, screenY, getResources());
         background2.x = screenX;
-        ob1= new Obstacle(screenX, screenY, getResources());
-        ob2= new Obstacle(screenX, screenY, getResources());
-        ob3= new Obstacle(screenX, screenY, getResources());
-        ob4= new Obstacle(screenX, screenY, getResources());
-        ob5= new Obstacle(screenX, screenY, getResources());
+        ob1= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        ob2= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        ob3= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        ob4= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        ob5= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
 
         objectOneX = screenX - ob1.object.getWidth();
         objectTwoX = screenX * 0.8 - ob2.object.getWidth();
@@ -79,6 +79,13 @@ public class GameView extends SurfaceView implements Runnable{
             aiai = new Aiai(screenX, screenY, getResources());
             gonGon = new GonGon(screenX, screenY, getResources());
             baby = new Baby(screenX, screenY, getResources());
+
+
+            aiai = new Aiai(screenX, screenY, getResources());
+            gonGon = new GonGon(screenX, screenY, getResources());
+            baby = new Baby(screenX, screenY, getResources());
+
+
         background2.y = screenX;
         paint = new Paint();
 
@@ -115,7 +122,26 @@ public class GameView extends SurfaceView implements Runnable{
         ob4.y += speed;
         ob5.y += speed;
 
-        if (left)
+        if(ob1.getY() >= screenY + 100) {
+            Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
+            ob1= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        }
+        if(ob2.getY() >= screenY + 500) {
+            Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
+            ob2= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        }
+        if(ob3.getY() >= screenY + 1000) {
+            Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
+            ob3= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        }
+        if(ob4.getY() >= screenY + 1500) {
+            Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
+            ob4= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        }
+        if(ob5.getY() >= screenY + 2000) {
+            Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
+            ob5= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        }
 
         if(background1.y >= screenY){
             background1.y = -screenY;
@@ -144,7 +170,6 @@ public class GameView extends SurfaceView implements Runnable{
     private void draw(){
         if (getHolder().getSurface().isValid()){
             Canvas canvas = getHolder().lockCanvas();
-
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
             canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
 
@@ -180,6 +205,20 @@ public class GameView extends SurfaceView implements Runnable{
 ////                    ob1.setX(screenX - ob1.object.getWidth() - 1000);
 //                }
 //            }
+
+
+//            if(ob1.getY() >= screenY){
+//                    ob1.setType(2);
+////                if(type == 1){
+////                    ob1.setObject(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.banana));
+////                }else if(type == 2){
+////                    ob1.setObject(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.sideways_barrel));
+////                }else if(type == 3){
+////                    ob1.setObject(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.normal_barrel));
+////                }
+//            }
+
+
 
             getHolder().unlockCanvasAndPost(canvas);
 
@@ -221,23 +260,17 @@ public class GameView extends SurfaceView implements Runnable{
                 if(event.getX() < screenX/2 ){
                     Log.println(Log.ASSERT, "SAUER", "Left click");
                     if (charPos!=1) {
-
                         aiai.x -= screenX / 5;
                         gonGon.x -= screenX / 5;
                         baby.x -= screenX / 5;
-
-
                         charPos--;
                     }
                 }else {
                     Log.println(Log.ASSERT, "SAUER", "right click");
                     if (charPos!=5) {
-
-
                         aiai.x += screenX / 5;
                         gonGon.x += screenX / 5;
                         baby.x += screenX / 5;
-
                         charPos++;
                     }
                 }
