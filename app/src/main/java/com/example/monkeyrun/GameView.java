@@ -165,7 +165,7 @@ public class GameView extends SurfaceView implements Runnable{
 //
 //        }
 
-        if(Rect.intersects(ob3.getCollisionShape(), aiai.getCollisionShape()) && ob3.getType() == 3){
+        if(Rect.intersects(ob3.getCollisionShape(), aiai.getCollisionShape())){
             Log.println(Log.ASSERT, "OBSTACLE", "Collision of banana");
         }
 
