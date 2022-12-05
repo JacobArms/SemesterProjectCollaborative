@@ -62,17 +62,18 @@ public class GameView extends SurfaceView implements Runnable{
         background1= new Background(screenX, screenY, getResources());
         background2= new Background(screenX, screenY, getResources());
         background2.x = screenX;
-        ob1= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
-        ob2= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
-        ob3= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
-        ob4= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
-        ob5= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+        objectOneX = 0;
+        objectTwoX = screenX/5;
+        objectThreeX = screenX/5*2;
+        objectFourX = screenX/5*3;
+        objectFiveX = screenX/5*4;
+        ob1= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),1);
+        ob2= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),2);
+        ob3= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),3);
+        ob4= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),4);
+        ob5= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),5);
 
-        objectOneX = screenX - ob1.object.getWidth();
-        objectTwoX = screenX * 0.8 - ob2.object.getWidth();
-        objectThreeX = screenX * 0.6 - ob3.object.getWidth();
-        objectFourX = screenX * 0.4 - ob4.object.getWidth();
-        objectFiveX = screenX * 0.2 - ob5.object.getWidth();
+
 
 //        ob2.addPaddingLeftForBitmap(ob2.object, 500);
         //Draws the different characters for the different difficulties
@@ -122,25 +123,30 @@ public class GameView extends SurfaceView implements Runnable{
         ob4.y += speed;
         ob5.y += speed;
 
-        if(ob1.getY() >= screenY + 100) {
+        if(ob1.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
-            ob1= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+            ob1= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),1);
+            ob1.setY(0-ob3.height);
         }
-        if(ob2.getY() >= screenY + 500) {
+        if(ob2.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
-            ob2= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+            ob2= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),2);
+            ob1.setY(0-ob3.height);
         }
-        if(ob3.getY() >= screenY + 1000) {
+        if(ob3.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
-            ob3= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+            ob3= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),3);
+            ob1.setY(0-ob3.height);
         }
-        if(ob4.getY() >= screenY + 1500) {
+        if(ob4.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
-            ob4= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+            ob4= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),4);
+            ob1.setY(0-ob3.height);
         }
-        if(ob5.getY() >= screenY + 2000) {
+        if(ob5.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
-            ob5= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1));
+            ob5= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),5);
+            ob1.setY(0-ob3.height);
         }
 
         if(background1.y >= screenY){
@@ -165,9 +171,10 @@ public class GameView extends SurfaceView implements Runnable{
 //
 //        }
 
-        if(Rect.intersects(ob3.getCollisionShape(), aiai.getCollisionShape())){
-            Log.println(Log.ASSERT, "OBSTACLE", "Collision of banana");
+        if(ob3.y>=aiai.y){
+            Log.println(Log.ASSERT, "SAUER", "ob3 hit aiai y");
         }
+
 
     }
     //draws new position of drawables
@@ -179,10 +186,10 @@ public class GameView extends SurfaceView implements Runnable{
 
 //            canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
             canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
-            canvas.drawBitmap(ob2.object,(float) objectTwoX, ob2.y-500, paint);
-            canvas.drawBitmap(ob3.object, (float) objectThreeX, ob3.y-1000, paint);
-            canvas.drawBitmap(ob4.object, (float) objectFourX, ob4.y-1500, paint);
-            canvas.drawBitmap(ob5.object, (float) objectFiveX, ob5.y-2000, paint);
+            canvas.drawBitmap(ob2.object,(float) objectTwoX, ob2.y, paint);
+            canvas.drawBitmap(ob3.object, (float) objectThreeX, ob3.y, paint);
+            canvas.drawBitmap(ob4.object, (float) objectFourX, ob4.y, paint);
+            canvas.drawBitmap(ob5.object, (float) objectFiveX, ob5.y, paint);
             if (diff==2) {
                 canvas.drawBitmap(aiai.getFrame(), aiai.x, aiai.y, paint);
             } else if(diff==3){
@@ -290,31 +297,31 @@ public class GameView extends SurfaceView implements Runnable{
             ob1.setType((int)Math.floor(Math.random()*3+1));
 //            ob1.setObject(null);
 //            ob1 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-            ob1.setY(-500);
+            ob1.setY(0-ob3.height);
         }
-        if(ob2.y-500 >= screenY){
+        if(ob2.y >= screenY){
             ob2.setType((int)Math.floor(Math.random()*3+1));
 //            ob2.setObject(null);
 //            ob2 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-            ob2.setY(-500);
+            ob2.setY(0-ob3.height);
         }
-        if(ob3.y-1000 >= screenY){
+        if(ob3.y >= screenY){
             ob3.setType((int)Math.floor(Math.random()*3+1));
 //            ob3.setObject(null);
 //            ob3 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-            ob3.setY(-500);
+            ob3.setY(0-ob3.height);
         }
-        if(ob4.y-1500 >= screenY){
+        if(ob4.y >= screenY){
             ob4.setType((int)Math.floor(Math.random()*3+1));
 //            ob4.setObject(null);
 //            ob4 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-            ob4.setY(-500);
+            ob4.setY(0-ob3.height);
         }
-        if(ob5.y-2000 >= screenY){
+        if(ob5.y >= screenY){
             ob5.setType((int)Math.floor(Math.random()*3+1));
 //            ob5.setObject(null);
 //            ob5 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
-            ob5.setY(-500);
+            ob5.setY(0-ob3.height);
         }
     }
 

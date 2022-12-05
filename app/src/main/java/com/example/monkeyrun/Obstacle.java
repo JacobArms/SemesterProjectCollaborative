@@ -7,15 +7,22 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.util.Log;
 
 public class Obstacle {
     int x = 0;
     int y = 0, width, height;
     Bitmap object;
     private int type;
+    int obstaclePos;
 
-    public Obstacle (int screenX, int screenY, Resources res, int type){
+
+
+    public Obstacle (int screenX, int screenY, Resources res, int type, int obstaclePos){
         //The (int)Math.floor(Math.random()*6), decides whether or not the object is a banana, barrel, or sideways barrel
+        this.obstaclePos=obstaclePos;
+        Log.println(Log.ASSERT, "OBSTACLE", "" + obstaclePos);
+
 
 
         if (type == 1) {
@@ -90,5 +97,13 @@ public class Obstacle {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public void setObstaclePos(int obstaclePos) {
+        this.obstaclePos = obstaclePos;
+    }
+
+    public int getObstaclePos() {
+        return obstaclePos;
     }
 }
