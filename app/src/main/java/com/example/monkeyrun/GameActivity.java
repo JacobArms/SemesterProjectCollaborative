@@ -30,6 +30,7 @@ public class GameActivity extends AppCompatActivity {
     private GestureDetector.SimpleOnGestureListener gestureListener;
     private Obstacle ob1, ob2, ob3, ob4, ob5;
     private int score;
+    private OpeningScreenActivity openingScreenActivity;
 //    private ImageView monkeyAiai;
 //jacob messed up
 
@@ -40,6 +41,12 @@ public class GameActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getSize(point);
         gameView = new GameView(this, point.x, point.y);
         setContentView(gameView);
+
+        if(gameView.isHitBarrel()){
+            Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
+            startActivity(intent);
+
+        }
 //        Rect obstacleRect = new Rect((int)ob1.x,ob1.y,(int)(ob1.x+ob1.object.getWidth()),ob1.object.getHeight());
 //        Rect monkeyRect = new Rect(aiai.x,aiai.y,aiai.x+aiai.aiai1.getWidth(),aiai.aiai1.getHeight());
 //
@@ -74,6 +81,8 @@ public class GameActivity extends AppCompatActivity {
 //            }
 //
 //        });
+
+
     }
 
     @SuppressLint("ClickableViewAccessibility")

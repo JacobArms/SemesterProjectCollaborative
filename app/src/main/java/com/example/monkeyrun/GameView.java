@@ -25,8 +25,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import android.content.res.Resources;
 
-import com.google.androidgamesdk.GameActivity;
-
 public class GameView extends SurfaceView implements Runnable{
     private Thread thread;
     Timer timer;
@@ -57,6 +55,7 @@ public class GameView extends SurfaceView implements Runnable{
     double three = speed*(Math.random()+1);
     double four = speed*(Math.random()+1);
     double five = speed*(Math.random()+1);
+    private boolean hitBarrel = false;
 //    Rect obstacleRect = new Rect((int)ob1.x,ob1.y,(int)(ob1.x+ob1.object.getWidth()),ob1.object.getHeight());
 //    Rect monkeyRect = new Rect(aiai.x,aiai.y,aiai.x+aiai.aiai1.getWidth(),aiai.aiai1.getHeight());
 //    Resource res;
@@ -197,6 +196,7 @@ public class GameView extends SurfaceView implements Runnable{
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 1");
 //                    ((Activity) getContext()).finish();
+                    hitBarrel = true;
                 }
             }
         }
@@ -208,6 +208,7 @@ public class GameView extends SurfaceView implements Runnable{
                     hitOnce2 = false;
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 2");
+                    hitBarrel = true;
                 }
             }
         }
@@ -219,6 +220,7 @@ public class GameView extends SurfaceView implements Runnable{
                     hitOnce3 = false;
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 3");
+                    hitBarrel = true;
                 }
             }
         }
@@ -230,6 +232,7 @@ public class GameView extends SurfaceView implements Runnable{
                     hitOnce4 = false;
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 4");
+                    hitBarrel = true;
                 }
             }
         }
@@ -241,6 +244,7 @@ public class GameView extends SurfaceView implements Runnable{
                     hitOnce5 = false;
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 5");
+                    hitBarrel = true;
                 }
             }
         }
@@ -465,6 +469,62 @@ public class GameView extends SurfaceView implements Runnable{
 
     public void setOb5(Obstacle ob5) {
         this.ob5 = ob5;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+
+    public boolean isHitOnce1() {
+        return hitOnce1;
+    }
+
+    public void setHitOnce1(boolean hitOnce1) {
+        this.hitOnce1 = hitOnce1;
+    }
+
+    public boolean isHitOnce2() {
+        return hitOnce2;
+    }
+
+    public void setHitOnce2(boolean hitOnce2) {
+        this.hitOnce2 = hitOnce2;
+    }
+
+    public boolean isHitOnce3() {
+        return hitOnce3;
+    }
+
+    public void setHitOnce3(boolean hitOnce3) {
+        this.hitOnce3 = hitOnce3;
+    }
+
+    public boolean isHitOnce4() {
+        return hitOnce4;
+    }
+
+    public void setHitOnce4(boolean hitOnce4) {
+        this.hitOnce4 = hitOnce4;
+    }
+
+    public boolean isHitOnce5() {
+        return hitOnce5;
+    }
+
+    public void setHitOnce5(boolean hitOnce5) {
+        this.hitOnce5 = hitOnce5;
+    }
+
+    public boolean isHitBarrel() {
+        return hitBarrel;
+    }
+
+    public void setHitBarrel(boolean hitBarrel) {
+        this.hitBarrel = hitBarrel;
     }
 }
 
