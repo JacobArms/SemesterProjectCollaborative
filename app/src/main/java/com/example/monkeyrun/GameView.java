@@ -19,6 +19,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 import java.util.Timer;
@@ -49,6 +50,7 @@ public class GameView extends SurfaceView implements Runnable{
     SurfaceView gameView = this;
     private int score = 0;
     int counter = 0;
+
     int x , y;
     float speed = diff * 10;
     double one = speed*(Math.random()+1);
@@ -197,6 +199,8 @@ public class GameView extends SurfaceView implements Runnable{
                     Log.println(Log.ASSERT, "hits", "hit 1");
 //                    ((Activity) getContext()).finish();
                     hitBarrel = true;
+
+//                    gameView.setVisibility(gameView.GONE);
                 }
             }
         }

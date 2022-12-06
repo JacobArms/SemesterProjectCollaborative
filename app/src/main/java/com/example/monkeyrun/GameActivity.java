@@ -6,6 +6,7 @@ import static com.example.monkeyrun.GameView.isHitBarrel;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.GameManager;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +25,8 @@ import android.widget.Toast;
 import java.lang.reflect.Array;
 
 public class GameActivity extends AppCompatActivity {
-//    private final Bundle bundle = getIntent().getExtras();
+
+    //    private final Bundle bundle = getIntent().getExtras();
 //    int diff = bundle.getInt("difficulty");
     private GameView gameView;
     private boolean hitBarrel = GameView.isHitBarrel();
@@ -47,10 +49,7 @@ public class GameActivity extends AppCompatActivity {
         gameView = new GameView(this, point.x, point.y);
         setContentView(gameView);
 
-        if(hitBarrel){
-            Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
-            startActivity(intent);
-        }
+
 
 
 //        if(hitBarrel){
@@ -123,12 +122,6 @@ public class GameActivity extends AppCompatActivity {
         super.onResume();
         gameView.resume();
     }
-
-    public void hitObstacle() {
-        Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
-        startActivity(intent);
-    }
-
     //    public void onSwipe(View view){
 //        view.setOnClickListener(new SwipeListener(context));
 //    }
