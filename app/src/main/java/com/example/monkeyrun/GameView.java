@@ -39,6 +39,7 @@ public class GameView extends SurfaceView implements Runnable{
     private GonGon gonGon;
     private Character character;
     private boolean hitOnce1 = true,hitOnce2 = true,hitOnce3 = true,hitOnce4 = true,hitOnce5 = true;
+    static boolean hitBarrel;
     private int diff = OpeningScreenActivity.diffNum;
     private int charPos = 3;
     private boolean right = false, left = false;
@@ -55,7 +56,6 @@ public class GameView extends SurfaceView implements Runnable{
     double three = speed*(Math.random()+1);
     double four = speed*(Math.random()+1);
     double five = speed*(Math.random()+1);
-    private boolean hitBarrel = false;
 //    Rect obstacleRect = new Rect((int)ob1.x,ob1.y,(int)(ob1.x+ob1.object.getWidth()),ob1.object.getHeight());
 //    Rect monkeyRect = new Rect(aiai.x,aiai.y,aiai.x+aiai.aiai1.getWidth(),aiai.aiai1.getHeight());
 //    Resource res;
@@ -76,7 +76,7 @@ public class GameView extends SurfaceView implements Runnable{
         objectThreeX = screenX/5*2;
         objectFourX = screenX/5*3;
         objectFiveX = screenX/5*4;
-
+        hitBarrel = false;
         ob1= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),1);
         ob2= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),2);
         ob3= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),3);
@@ -519,12 +519,12 @@ public class GameView extends SurfaceView implements Runnable{
         this.hitOnce5 = hitOnce5;
     }
 
-    public boolean isHitBarrel() {
+    public static boolean isHitBarrel() {
         return hitBarrel;
     }
 
-    public void setHitBarrel(boolean hitBarrel) {
-        this.hitBarrel = hitBarrel;
+    public static void setHitBarrel(boolean hitBarrel) {
+        GameView.hitBarrel = hitBarrel;
     }
 }
 

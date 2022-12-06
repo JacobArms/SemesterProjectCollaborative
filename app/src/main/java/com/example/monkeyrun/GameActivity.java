@@ -1,5 +1,8 @@
 package com.example.monkeyrun;
 
+import static com.example.monkeyrun.GameView.hitBarrel;
+import static com.example.monkeyrun.GameView.isHitBarrel;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -24,6 +27,7 @@ public class GameActivity extends AppCompatActivity {
 //    private final Bundle bundle = getIntent().getExtras();
 //    int diff = bundle.getInt("difficulty");
     private GameView gameView;
+    private boolean hitBarrel = GameView.isHitBarrel();
     private Aiai aiai;
     private Context context;
     private GameManager gameManager;
@@ -31,6 +35,7 @@ public class GameActivity extends AppCompatActivity {
     private Obstacle ob1, ob2, ob3, ob4, ob5;
     private int score;
     private OpeningScreenActivity openingScreenActivity;
+//    private static boolean hitBarrel = false;
 //    private ImageView monkeyAiai;
 //jacob messed up
 
@@ -42,11 +47,17 @@ public class GameActivity extends AppCompatActivity {
         gameView = new GameView(this, point.x, point.y);
         setContentView(gameView);
 
-        if(gameView.isHitBarrel()){
+        if(hitBarrel){
             Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
             startActivity(intent);
-
         }
+
+
+//        if(hitBarrel){
+//            Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
+//            startActivity(intent);
+
+//        }
 //        Rect obstacleRect = new Rect((int)ob1.x,ob1.y,(int)(ob1.x+ob1.object.getWidth()),ob1.object.getHeight());
 //        Rect monkeyRect = new Rect(aiai.x,aiai.y,aiai.x+aiai.aiai1.getWidth(),aiai.aiai1.getHeight());
 //
