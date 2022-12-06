@@ -40,6 +40,7 @@ public class GameView extends SurfaceView implements Runnable{
     private Baby baby;
     private GonGon gonGon;
     private Character character;
+    private boolean hitOnce1 = true,hitOnce2 = true,hitOnce3 = true,hitOnce4 = true,hitOnce5 = true;
     private int diff = OpeningScreenActivity.diffNum;
     private int charPos = 3;
     private boolean right = false, left = false;
@@ -50,6 +51,12 @@ public class GameView extends SurfaceView implements Runnable{
     private int score = 0;
     int counter = 0;
     int x , y;
+    float speed = diff * 10;
+    double one = speed*(Math.random()+1);
+    double two = speed*(Math.random()+1);
+    double three = speed*(Math.random()+1);
+    double four = speed*(Math.random()+1);
+    double five = speed*(Math.random()+1);
 //    Rect obstacleRect = new Rect((int)ob1.x,ob1.y,(int)(ob1.x+ob1.object.getWidth()),ob1.object.getHeight());
 //    Rect monkeyRect = new Rect(aiai.x,aiai.y,aiai.x+aiai.aiai1.getWidth(),aiai.aiai1.getHeight());
 //    Resource res;
@@ -94,7 +101,7 @@ public class GameView extends SurfaceView implements Runnable{
         background2.y = screenX;
         paint = new Paint();
         paint.setTextSize(128);
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.BLACK);
     }
 
     public GameView(Context context) {
@@ -119,39 +126,44 @@ public class GameView extends SurfaceView implements Runnable{
 
     //update position of drawables
     private void update(){
-        float speed = diff * 10;
+
         background1.y += screenRatioY;
         background2.y += screenRatioY;
-        ob1.y += speed;
-        ob2.y += speed;
-        ob3.y += speed;
-        ob4.y += speed;
-        ob5.y += speed;
+        ob1.y += one;
+        ob2.y += two;
+        ob3.y += three;
+        ob4.y += four;
+        ob5.y += five;
 
         if(ob1.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
             ob1= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),1);
             ob1.setY(0-ob3.height);
+            hitOnce1 = true;
         }
         if(ob2.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
             ob2= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),2);
             ob2.setY(0-ob3.height);
+            hitOnce2 = true;
         }
         if(ob3.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
             ob3= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),3);
             ob3.setY(0-ob3.height);
+            hitOnce3 = true;
         }
         if(ob4.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
             ob4= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),4);
             ob4.setY(0-ob3.height);
+            hitOnce4 = true;
         }
         if(ob5.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
             ob5= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),5);
             ob5.setY(0-ob3.height);
+            hitOnce5 = true;
         }
 
         if(background1.y >= screenY){
@@ -176,53 +188,57 @@ public class GameView extends SurfaceView implements Runnable{
 //
 //        }
 
-        if(ob1.y>=aiai.y){
+        if(ob1.y>=aiai.y&&hitOnce1){
             if(charPos==ob1.getObstaclePos()){
                 if (ob1.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 1");
                     score+=10*diff;
+                    hitOnce1 = false;
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 1");
-//                    Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
-//                    Bundle bundle = new Bundle();
+//                    ((Activity) getContext()).finish();
                 }
             }
         }
-        if(ob2.y>=aiai.y){
+        if(ob2.y>=aiai.y&&hitOnce2){
             if(charPos==ob2.getObstaclePos()){
                 if (ob2.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 2");
                     score+=10*diff;
+                    hitOnce2 = false;
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 2");
                 }
             }
         }
-        if(ob3.y>=aiai.y){
+        if(ob3.y>=aiai.y&&hitOnce3){
             if(charPos==ob3.getObstaclePos()){
                 if (ob3.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 3");
                     score+=10*diff;
+                    hitOnce3 = false;
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 3");
                 }
             }
         }
-        if(ob4.y>=aiai.y){
+        if(ob4.y>=aiai.y&&hitOnce4){
             if(charPos==ob4.getObstaclePos()){
                 if (ob4.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 4");
                     score+=10*diff;
+                    hitOnce4 = false;
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 4");
                 }
             }
         }
-        if(ob5.y>=aiai.y){
+        if(ob5.y>=aiai.y&&hitOnce5){
             if(charPos==ob5.getObstaclePos()){
                 if (ob5.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 5");
                     score+=10*diff;
+                    hitOnce5 = false;
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 5");
                 }
@@ -355,30 +371,35 @@ public class GameView extends SurfaceView implements Runnable{
 //            ob1.setObject(null);
 //            ob1 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
             ob1.setY(0-ob3.height);
+            hitOnce1 = true;
         }
         if(ob2.y >= screenY){
             ob2.setType((int)Math.floor(Math.random()*3+1));
 //            ob2.setObject(null);
 //            ob2 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
             ob2.setY(0-ob3.height);
+            hitOnce2 = true;
         }
         if(ob3.y >= screenY){
             ob3.setType((int)Math.floor(Math.random()*3+1));
 //            ob3.setObject(null);
 //            ob3 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
             ob3.setY(0-ob3.height);
+            hitOnce3 = true;
         }
         if(ob4.y >= screenY){
             ob4.setType((int)Math.floor(Math.random()*3+1));
 //            ob4.setObject(null);
 //            ob4 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
             ob4.setY(0-ob3.height);
+            hitOnce4 = true;
         }
         if(ob5.y >= screenY){
             ob5.setType((int)Math.floor(Math.random()*3+1));
 //            ob5.setObject(null);
 //            ob5 = new Obstacle((int)Math.floor(Math.random()*3+1),screenX, screenY, getResources());
             ob5.setY(0-ob3.height);
+            hitOnce5 = true;
         }
     }
 
