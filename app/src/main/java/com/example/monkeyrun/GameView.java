@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -23,6 +24,8 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import java.util.Timer;
 import java.util.TimerTask;
 import android.content.res.Resources;
+
+import com.google.androidgamesdk.GameActivity;
 
 public class GameView extends SurfaceView implements Runnable{
     private Thread thread;
@@ -44,7 +47,7 @@ public class GameView extends SurfaceView implements Runnable{
     View.OnTouchListener gestureListener;
     private double objectOneX, objectTwoX, objectThreeX, objectFourX, objectFiveX;
     SurfaceView gameView = this;
-    private int score;
+    private int score = 0;
     int counter = 0;
     int x , y;
 //    Rect obstacleRect = new Rect((int)ob1.x,ob1.y,(int)(ob1.x+ob1.object.getWidth()),ob1.object.getHeight());
@@ -67,6 +70,7 @@ public class GameView extends SurfaceView implements Runnable{
         objectThreeX = screenX/5*2;
         objectFourX = screenX/5*3;
         objectFiveX = screenX/5*4;
+
         ob1= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),1);
         ob2= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),2);
         ob3= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),3);
@@ -89,7 +93,8 @@ public class GameView extends SurfaceView implements Runnable{
 
         background2.y = screenX;
         paint = new Paint();
-
+        paint.setTextSize(128);
+        paint.setColor(Color.WHITE);
     }
 
     public GameView(Context context) {
@@ -131,22 +136,22 @@ public class GameView extends SurfaceView implements Runnable{
         if(ob2.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
             ob2= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),2);
-            ob1.setY(0-ob3.height);
+            ob2.setY(0-ob3.height);
         }
         if(ob3.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
             ob3= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),3);
-            ob1.setY(0-ob3.height);
+            ob3.setY(0-ob3.height);
         }
         if(ob4.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
             ob4= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),4);
-            ob1.setY(0-ob3.height);
+            ob4.setY(0-ob3.height);
         }
         if(ob5.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
             ob5= new Obstacle(screenX, screenY, getResources(), (int)Math.floor(Math.random()*3+1),5);
-            ob1.setY(0-ob3.height);
+            ob5.setY(0-ob3.height);
         }
 
         if(background1.y >= screenY){
@@ -171,8 +176,57 @@ public class GameView extends SurfaceView implements Runnable{
 //
 //        }
 
+        if(ob1.y>=aiai.y){
+            if(charPos==ob1.getObstaclePos()){
+                if (ob1.getType()==3) {
+                    Log.println(Log.ASSERT, "hits", "banana collected 1");
+                    score+=10*diff;
+                }else{
+                    Log.println(Log.ASSERT, "hits", "hit 1");
+//                    Intent intent = new Intent(GameActivity.this, GameEndActivity.class);
+//                    Bundle bundle = new Bundle();
+                }
+            }
+        }
+        if(ob2.y>=aiai.y){
+            if(charPos==ob2.getObstaclePos()){
+                if (ob2.getType()==3) {
+                    Log.println(Log.ASSERT, "hits", "banana collected 2");
+                    score+=10*diff;
+                }else{
+                    Log.println(Log.ASSERT, "hits", "hit 2");
+                }
+            }
+        }
         if(ob3.y>=aiai.y){
-            Log.println(Log.ASSERT, "SAUER", "ob3 hit aiai y");
+            if(charPos==ob3.getObstaclePos()){
+                if (ob3.getType()==3) {
+                    Log.println(Log.ASSERT, "hits", "banana collected 3");
+                    score+=10*diff;
+                }else{
+                    Log.println(Log.ASSERT, "hits", "hit 3");
+                }
+            }
+        }
+        if(ob4.y>=aiai.y){
+            if(charPos==ob4.getObstaclePos()){
+                if (ob4.getType()==3) {
+                    Log.println(Log.ASSERT, "hits", "banana collected 4");
+                    score+=10*diff;
+                }else{
+                    Log.println(Log.ASSERT, "hits", "hit 4");
+                }
+            }
+        }
+        if(ob5.y>=aiai.y){
+            if(charPos==ob5.getObstaclePos()){
+                if (ob5.getType()==3) {
+                    Log.println(Log.ASSERT, "hits", "banana collected 5");
+                    score+=10*diff;
+                }else{
+                    Log.println(Log.ASSERT, "hits", "hit 5");
+                }
+            }
         }
 
 
@@ -183,7 +237,7 @@ public class GameView extends SurfaceView implements Runnable{
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
             canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
-
+            canvas.drawText(score + "",  screenX / 2f, 164, paint);
 //            canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
             canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
             canvas.drawBitmap(ob2.object,(float) objectTwoX, ob2.y, paint);
@@ -197,6 +251,9 @@ public class GameView extends SurfaceView implements Runnable{
             } else{
                 canvas.drawBitmap(baby.getFrame(), baby.x, baby.y, paint);
             }
+
+
+
 //            if(ob1.getY() >= screenY){
 //                int type = (int)Math.floor(Math.random()*3+1);
 //

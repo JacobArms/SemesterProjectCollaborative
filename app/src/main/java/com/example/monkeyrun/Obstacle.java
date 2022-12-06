@@ -22,7 +22,7 @@ public class Obstacle {
         //The (int)Math.floor(Math.random()*6), decides whether or not the object is a banana, barrel, or sideways barrel
         this.obstaclePos=obstaclePos;
         Log.println(Log.ASSERT, "OBSTACLE", "" + obstaclePos);
-
+        this.type=type;
 
 
         if (type == 1) {
