@@ -34,6 +34,7 @@ public class GameView extends SurfaceView implements Runnable{
     private float screenRatioX, screenRatioY;
     private Paint paint;
     private Background background1, background2;
+    private Cheer aiaiCheer, gonGonCheer, babyCheer;
     private EndScreen endScreen;
     private Obstacle ob1,ob2,ob3,ob4,ob5;
     private Aiai aiai;
@@ -70,16 +71,19 @@ public class GameView extends SurfaceView implements Runnable{
         this.screenY=screenY;
         screenRatioX = 1920f / screenX;
         screenRatioY = 1080f/ screenY;
-        one = (speed*(Math.random()+1))/screenRatioY;
-        two = (speed*(Math.random()+1))/screenRatioY;
-        three = (speed*(Math.random()+1))/screenRatioY;
-        four = (speed*(Math.random()+1))/screenRatioY;
-        five = (speed*(Math.random()+1))/screenRatioY;
+        one = (speed*(Math.random()+1))/(screenRatioY*2);
+        two = (speed*(Math.random()+1))/(screenRatioY*2);
+        three = (speed*(Math.random()+1))/(screenRatioY*2);
+        four = (speed*(Math.random()+1))/(screenRatioY*2);
+        five = (speed*(Math.random()+1))/(screenRatioY*2);
         screenRatioX = 1920f / screenX;
         screenRatioY = 1080f / screenY;
         background1= new Background(screenX, screenY, getResources());
         background2= new Background(screenX, screenY, getResources());
         endScreen = new EndScreen(screenX, screenY, getResources());
+        aiaiCheer = new Cheer(screenX, screenY, getResources(), R.drawable.aiaicheer);
+        babyCheer = new Cheer(screenX, screenY, getResources(), R.drawable.baby_monkey_end_screen);
+        gonGonCheer = new Cheer(screenX, screenY, getResources(), R.drawable.gon_gon_end_screen);
         background2.x = screenX;
         objectOneX = 0;
         objectTwoX = screenX/5;
@@ -294,6 +298,13 @@ public class GameView extends SurfaceView implements Runnable{
                 }
             }else{
                 canvas.drawBitmap(endScreen.endscreen, endScreen.x, endScreen.y, paint);
+                if(diff == 1){
+                    canvas.drawBitmap(babyCheer.cheer, 2000, 2000, paint);
+                }else if(diff == 2){
+                    canvas.drawBitmap(aiaiCheer.cheer, 2000, 2000, paint);
+                }else{
+                    canvas.drawBitmap(gonGonCheer.cheer, 2000, 2000, paint);
+                }
             }
 
 
