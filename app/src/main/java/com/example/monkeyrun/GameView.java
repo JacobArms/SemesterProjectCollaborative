@@ -34,6 +34,7 @@ public class GameView extends SurfaceView implements Runnable{
     private float screenRatioX, screenRatioY;
     private Paint paint;
     private Background background1, background2;
+    private EndScreen endScreen;
     private Obstacle ob1,ob2,ob3,ob4,ob5;
     private Aiai aiai;
     private Baby baby;
@@ -49,15 +50,16 @@ public class GameView extends SurfaceView implements Runnable{
     private double objectOneX, objectTwoX, objectThreeX, objectFourX, objectFiveX;
     SurfaceView gameView = this;
     private int score = 0;
+    private Boolean alive = true;
     int counter = 0;
-
+    double one;
+    double two;
+    double three;
+    double four;
+    double five;
     int x , y;
     float speed = diff * 10;
-    double one = speed*(Math.random()+1);
-    double two = speed*(Math.random()+1);
-    double three = speed*(Math.random()+1);
-    double four = speed*(Math.random()+1);
-    double five = speed*(Math.random()+1);
+
 //    Rect obstacleRect = new Rect((int)ob1.x,ob1.y,(int)(ob1.x+ob1.object.getWidth()),ob1.object.getHeight());
 //    Rect monkeyRect = new Rect(aiai.x,aiai.y,aiai.x+aiai.aiai1.getWidth(),aiai.aiai1.getHeight());
 //    Resource res;
@@ -68,10 +70,16 @@ public class GameView extends SurfaceView implements Runnable{
         this.screenY=screenY;
         screenRatioX = 1920f / screenX;
         screenRatioY = 1080f/ screenY;
+        one = (speed*(Math.random()+1))/screenRatioY;
+        two = (speed*(Math.random()+1))/screenRatioY;
+        three = (speed*(Math.random()+1))/screenRatioY;
+        four = (speed*(Math.random()+1))/screenRatioY;
+        five = (speed*(Math.random()+1))/screenRatioY;
         screenRatioX = 1920f / screenX;
         screenRatioY = 1080f / screenY;
         background1= new Background(screenX, screenY, getResources());
         background2= new Background(screenX, screenY, getResources());
+        endScreen = new EndScreen(screenX, screenY, getResources());
         background2.x = screenX;
         objectOneX = 0;
         objectTwoX = screenX/5;
@@ -197,10 +205,10 @@ public class GameView extends SurfaceView implements Runnable{
                     hitOnce1 = false;
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 1");
-//                    ((Activity) getContext()).finish();
                     hitBarrel = true;
-
+//                    ((Activity) getContext()).finish();
 //                    gameView.setVisibility(gameView.GONE);
+                    alive=false;
                 }
             }
         }
@@ -213,6 +221,8 @@ public class GameView extends SurfaceView implements Runnable{
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 2");
                     hitBarrel = true;
+                    alive=false;
+
                 }
             }
         }
@@ -225,6 +235,8 @@ public class GameView extends SurfaceView implements Runnable{
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 3");
                     hitBarrel = true;
+                    alive=false;
+
                 }
             }
         }
@@ -237,6 +249,8 @@ public class GameView extends SurfaceView implements Runnable{
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 4");
                     hitBarrel = true;
+                    alive=false;
+
                 }
             }
         }
@@ -249,6 +263,8 @@ public class GameView extends SurfaceView implements Runnable{
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 5");
                     hitBarrel = true;
+                    alive=false;
+
                 }
             }
         }
@@ -259,21 +275,25 @@ public class GameView extends SurfaceView implements Runnable{
     private void draw(){
         if (getHolder().getSurface().isValid()){
             Canvas canvas = getHolder().lockCanvas();
-            canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
-            canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
-            canvas.drawText(score + "",  screenX / 2f, 164, paint);
+            if(alive) {
+                canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
+                canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
+                canvas.drawText(score + "", screenX / 2f, 164, paint);
 //            canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
-            canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
-            canvas.drawBitmap(ob2.object,(float) objectTwoX, ob2.y, paint);
-            canvas.drawBitmap(ob3.object, (float) objectThreeX, ob3.y, paint);
-            canvas.drawBitmap(ob4.object, (float) objectFourX, ob4.y, paint);
-            canvas.drawBitmap(ob5.object, (float) objectFiveX, ob5.y, paint);
-            if (diff==2) {
-                canvas.drawBitmap(aiai.getFrame(), aiai.x, aiai.y, paint);
-            } else if(diff==3){
-                canvas.drawBitmap(gonGon.getFrame(), gonGon.x, gonGon.y, paint);
-            } else{
-                canvas.drawBitmap(baby.getFrame(), baby.x, baby.y, paint);
+                canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
+                canvas.drawBitmap(ob2.object, (float) objectTwoX, ob2.y, paint);
+                canvas.drawBitmap(ob3.object, (float) objectThreeX, ob3.y, paint);
+                canvas.drawBitmap(ob4.object, (float) objectFourX, ob4.y, paint);
+                canvas.drawBitmap(ob5.object, (float) objectFiveX, ob5.y, paint);
+                if (diff == 2) {
+                    canvas.drawBitmap(aiai.getFrame(), aiai.x, aiai.y, paint);
+                } else if (diff == 3) {
+                    canvas.drawBitmap(gonGon.getFrame(), gonGon.x, gonGon.y, paint);
+                } else {
+                    canvas.drawBitmap(baby.getFrame(), baby.x, baby.y, paint);
+                }
+            }else{
+                canvas.drawBitmap(endScreen.endscreen, endScreen.x, endScreen.y, paint);
             }
 
 
