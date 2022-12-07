@@ -201,7 +201,7 @@ public class GameView extends SurfaceView implements Runnable{
 //
 //        }
 
-        if(ob1.y>=aiai.y&&hitOnce1){
+        if(ob1.y>=aiai.y&&hitOnce1&&ob1.y<aiai.y+aiai.height){
             if(charPos==ob1.getObstaclePos()){
                 if (ob1.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 1");
@@ -216,7 +216,7 @@ public class GameView extends SurfaceView implements Runnable{
                 }
             }
         }
-        if(ob2.y>=aiai.y&&hitOnce2){
+        if(ob2.y>=aiai.y&&hitOnce2&&ob2.y<aiai.y+aiai.height){
             if(charPos==ob2.getObstaclePos()){
                 if (ob2.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 2");
@@ -230,7 +230,7 @@ public class GameView extends SurfaceView implements Runnable{
                 }
             }
         }
-        if(ob3.y>=aiai.y&&hitOnce3){
+        if(ob3.y>=aiai.y&&hitOnce3&&ob3.y<aiai.y+aiai.height){
             if(charPos==ob3.getObstaclePos()){
                 if (ob3.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 3");
@@ -244,7 +244,7 @@ public class GameView extends SurfaceView implements Runnable{
                 }
             }
         }
-        if(ob4.y>=aiai.y&&hitOnce4){
+        if(ob4.y>=aiai.y&&hitOnce4&&ob4.y<aiai.y+aiai.height){
             if(charPos==ob4.getObstaclePos()){
                 if (ob4.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 4");
@@ -258,7 +258,7 @@ public class GameView extends SurfaceView implements Runnable{
                 }
             }
         }
-        if(ob5.y>=aiai.y&&hitOnce5){
+        if(ob5.y>=aiai.y&&hitOnce5&&ob5.y<aiai.y+aiai.height){
             if(charPos==ob5.getObstaclePos()){
                 if (ob5.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 5");
@@ -299,12 +299,14 @@ public class GameView extends SurfaceView implements Runnable{
             }else{
                 canvas.drawBitmap(endScreen.endscreen, endScreen.x, endScreen.y, paint);
                 if(diff == 1){
-                    canvas.drawBitmap(babyCheer.cheer, 2000, 2000, paint);
+                    canvas.drawBitmap(babyCheer.cheer, screenX/2-300, screenY/2-550, paint);
                 }else if(diff == 2){
-                    canvas.drawBitmap(aiaiCheer.cheer, 2000, 2000, paint);
+                    canvas.drawBitmap(aiaiCheer.cheer, screenX/2-300, screenY/2-550, paint);
                 }else{
-                    canvas.drawBitmap(gonGonCheer.cheer, 2000, 2000, paint);
+                    canvas.drawBitmap(gonGonCheer.cheer, screenX/2-300, screenY/2-550, paint);
                 }
+                canvas.drawText("Score:" + score, screenX/2-150, screenY/2+300, paint);
+
             }
 
 

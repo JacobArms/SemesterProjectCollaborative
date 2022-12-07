@@ -10,7 +10,7 @@ public class Cheer {
 
     public Cheer (int x, int y, Resources res, int drawable){
         cheer = BitmapFactory.decodeResource(res, drawable);
-        cheer = Bitmap.createScaledBitmap(cheer, x, y, false);
+        cheer = Bitmap.createScaledBitmap(cheer, 600, 800, false);
     }
 
 }
