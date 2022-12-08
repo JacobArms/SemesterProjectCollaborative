@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
@@ -44,13 +45,16 @@ public class OpeningScreenActivity extends AppCompatActivity{
     ListPopupWindow listPopupWindow;
     MediaPlayer mp;
     MediaPlayer mpGame;
+    public static int highScore=0;
     boolean wasPlaying = false;
+
     AudioManager audioManager;
     // Sets the difficulty of the game by setting the int to either 1, 2, or 3
     public static int diffNum = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening_screen);
         //Creates the background music for the game
@@ -59,6 +63,10 @@ public class OpeningScreenActivity extends AppCompatActivity{
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,100,100);
         mpGame = MediaPlayer.create(this,R.raw.monkey_run_game_music);
         mp.start();
+        SharedPreferences sharedPreferences = getSharedPreferences("highscore",0);
+        int a = sharedPreferences.getInt("highscore", 0);
+        TextView hs = findViewById(R.id.Highscore);
+        hs.setText("HighScore:" + a);
         myDialog = new Dialog(this);
         //Movement of the objects off of screen when the "play" button is hit
         final ImageView AiAi = findViewById(R.id.AiAi);

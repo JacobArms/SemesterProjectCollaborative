@@ -3,6 +3,7 @@ package com.example.monkeyrun;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.fonts.Font;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.constraintlayout.widget.ConstraintSet;
 
+import java.io.InputStream;
 import java.util.Timer;
 import java.util.TimerTask;
 import android.content.res.Resources;
@@ -30,6 +33,7 @@ public class GameView extends SurfaceView implements Runnable{
     private Thread thread;
     Timer timer;
     private Boolean isPlaying;
+    private int helperNum = 0;
     private int screenX, screenY;
     private float screenRatioX, screenRatioY;
     private Paint paint;
@@ -38,6 +42,7 @@ public class GameView extends SurfaceView implements Runnable{
     private EndScreen endScreen;
     private Obstacle ob1,ob2,ob3,ob4,ob5;
     private Aiai aiai;
+    public int highScore = OpeningScreenActivity.highScore;
     private Baby baby;
     private GonGon gonGon;
     private Character character;
@@ -114,7 +119,8 @@ public class GameView extends SurfaceView implements Runnable{
         background2.y = screenX;
         paint = new Paint();
         paint.setTextSize(128);
-        paint.setColor(Color.BLACK);
+        paint.setColor(Color.WHITE);
+
     }
 
     public GameView(Context context) {
@@ -142,11 +148,13 @@ public class GameView extends SurfaceView implements Runnable{
 
         background1.y += screenRatioY;
         background2.y += screenRatioY;
-        ob1.y += one;
-        ob2.y += two;
-        ob3.y += three;
-        ob4.y += four;
-        ob5.y += five;
+        if(alive) {
+            ob1.y += one;
+            ob2.y += two;
+            ob3.y += three;
+            ob4.y += four;
+            ob5.y += five;
+        }
 
         if(ob1.getY() >= screenY) {
             Log.println(Log.ASSERT, "ARMS", "OBJECT CHANGED");
@@ -280,9 +288,11 @@ public class GameView extends SurfaceView implements Runnable{
         if (getHolder().getSurface().isValid()){
             Canvas canvas = getHolder().lockCanvas();
             if(alive) {
+                paint.setTextSize(128);
+                paint.setColor(Color.BLACK);
                 canvas.drawBitmap(background1.background, background1.x, background1.y, paint);
                 canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
-                canvas.drawText(score + "", screenX / 2f, 164, paint);
+                canvas.drawText("Score:" + score, 0 , 164, paint);
 //            canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
                 canvas.drawBitmap(ob1.object, (float) objectOneX, ob1.y, paint);
                 canvas.drawBitmap(ob2.object, (float) objectTwoX, ob2.y, paint);
@@ -297,7 +307,13 @@ public class GameView extends SurfaceView implements Runnable{
                     canvas.drawBitmap(baby.getFrame(), baby.x, baby.y, paint);
                 }
             }else{
+                if (score>highScore) {
+                    highScore = score;
+                }
+                paint.setTextSize(128);
+                paint.setColor(Color.WHITE);
                 canvas.drawBitmap(endScreen.endscreen, endScreen.x, endScreen.y, paint);
+                canvas.drawText("HIGHSCORE:" + highScore, 10 , 150, paint);
                 if(diff == 1){
                     canvas.drawBitmap(babyCheer.cheer, screenX/2-300, screenY/2-550, paint);
                 }else if(diff == 2){
@@ -305,8 +321,31 @@ public class GameView extends SurfaceView implements Runnable{
                 }else{
                     canvas.drawBitmap(gonGonCheer.cheer, screenX/2-300, screenY/2-550, paint);
                 }
-                canvas.drawText("Score:" + score, screenX/2-150, screenY/2+300, paint);
 
+                if(helperNum==0){
+                    SharedPreferences sharedPreferences = getContext().getSharedPreferences("highscore", 0);
+                    SharedPreferences.Editor myEdit = sharedPreferences.edit();
+
+                    // write all the data entered by the user in SharedPreference and apply
+                    myEdit.putInt("highscore", highScore);
+                    myEdit.apply();
+                    helperNum++;
+                }
+
+                if(score>=1000){
+                    paint.setTextSize(100);
+                    canvas.drawText("Score:" + score, screenX/2-255, screenY/2+430, paint);
+                }else if (score==0){
+                    paint.setTextSize(128);
+                    canvas.drawText("Score:" + score, screenX/2-200, screenY/2+430, paint);
+                }else if (score>=100){
+                    paint.setTextSize(108);
+                    canvas.drawText("Score:" + score, screenX/2-250, screenY/2+430, paint);
+
+                }else{
+                    paint.setTextSize(128);
+                    canvas.drawText("Score:" + score, screenX/2-235, screenY/2+430, paint);
+                }
             }
 
 
@@ -382,21 +421,30 @@ public class GameView extends SurfaceView implements Runnable{
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                if(event.getX() < screenX/2 ){
-                    Log.println(Log.ASSERT, "SAUER", "Left click");
-                    if (charPos!=1) {
-                        aiai.x -= screenX / 5;
-                        gonGon.x -= screenX / 5;
-                        baby.x -= screenX / 5;
-                        charPos--;
+                if(alive) {
+                    if (event.getX() < screenX / 2) {
+                        Log.println(Log.ASSERT, "SAUER", "Left click");
+                        if (charPos != 1) {
+                            aiai.x -= screenX / 5;
+                            gonGon.x -= screenX / 5;
+                            baby.x -= screenX / 5;
+                            charPos--;
+                        }
+                    } else {
+                        Log.println(Log.ASSERT, "SAUER", "right click");
+                        if (charPos != 5) {
+                            aiai.x += screenX / 5;
+                            gonGon.x += screenX / 5;
+                            baby.x += screenX / 5;
+                            charPos++;
+                        }
                     }
-                }else {
-                    Log.println(Log.ASSERT, "SAUER", "right click");
-                    if (charPos!=5) {
-                        aiai.x += screenX / 5;
-                        gonGon.x += screenX / 5;
-                        baby.x += screenX / 5;
-                        charPos++;
+                }else{
+                    if(event.getX() > 208 && event.getX() < screenX-208){
+                        if (event.getY()<screenY-250&&event.getY()>screenY-450) {
+                            alive = true;
+                            resetGame();
+                        }
                     }
                 }
                 break;
@@ -562,6 +610,26 @@ public class GameView extends SurfaceView implements Runnable{
 
     public static void setHitBarrel(boolean hitBarrel) {
         GameView.hitBarrel = hitBarrel;
+    }
+
+    public void resetGame(){
+        charPos=3;
+        aiai.x=screenX/2 - aiai.width/2;
+        gonGon.x=screenX/2 - gonGon.width/2;
+        baby.x=screenX/2 - baby.width/2;
+        ob1.setY(0-ob3.height);
+        hitOnce1 = true;
+        ob2.setY(0-ob3.height);
+        hitOnce2 = true;
+        ob3.setY(0-ob3.height);
+        hitOnce3 = true;
+        ob4.setY(0-ob3.height);
+        hitOnce4 = true;
+        ob5.setY(0-ob3.height);
+        hitOnce5 = true;
+        score=0;
+        helperNum=0;
+
     }
 }
 
