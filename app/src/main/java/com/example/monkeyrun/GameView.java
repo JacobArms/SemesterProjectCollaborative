@@ -316,16 +316,16 @@ public class GameView extends SurfaceView implements Runnable{
                 if (score>highScore) {
                     highScore = score;
                 }
-                paint.setTextSize(128);
+                paint.setTextSize(100);
                 paint.setColor(Color.WHITE);
                 canvas.drawBitmap(endScreen.endscreen, endScreen.x, endScreen.y, paint);
                 canvas.drawText("HIGHSCORE:" + highScore, 10 , 150, paint);
                 if(diff == 1){
-                    canvas.drawBitmap(babyCheer.cheer, screenX/2-300, screenY/2-550, paint);
+                    canvas.drawBitmap(babyCheer.cheer, screenX/2-460/screenRatioX, screenY/2-300/screenRatioY, paint);
                 }else if(diff == 2){
-                    canvas.drawBitmap(aiaiCheer.cheer, screenX/2-300, screenY/2-550, paint);
+                    canvas.drawBitmap(aiaiCheer.cheer, screenX/2-460/screenRatioX, screenY/2-300/screenRatioY, paint);
                 }else{
-                    canvas.drawBitmap(gonGonCheer.cheer, screenX/2-300, screenY/2-550, paint);
+                    canvas.drawBitmap(gonGonCheer.cheer, screenX/2-460/screenRatioX, screenY/2-300/screenRatioY, paint);
                 }
 
                 if(helperNum==0){
@@ -340,17 +340,17 @@ public class GameView extends SurfaceView implements Runnable{
 
                 if(score>=1000){
                     paint.setTextSize(100);
-                    canvas.drawText("Score:" + score, screenX/2-255, screenY/2+430, paint);
+                    canvas.drawText("Score:" + score, screenX/2-447/screenRatioX, screenY/2+230/screenRatioY, paint);
                 }else if (score==0){
                     paint.setTextSize(128);
-                    canvas.drawText("Score:" + score, screenX/2-200, screenY/2+430, paint);
+                    canvas.drawText("Score:" + score, screenX/2-345/screenRatioX, screenY/2+230/screenRatioY, paint);
                 }else if (score>=100){
                     paint.setTextSize(108);
-                    canvas.drawText("Score:" + score, screenX/2-250, screenY/2+430, paint);
+                    canvas.drawText("Score:" + score, screenX/2-447/screenRatioX, screenY/2+230/screenRatioY, paint);
 
                 }else{
                     paint.setTextSize(128);
-                    canvas.drawText("Score:" + score, screenX/2-235, screenY/2+430, paint);
+                    canvas.drawText("Score:" + score, screenX/2-420/screenRatioX, screenY/2+230/screenRatioY, paint);
                 }
             }
 

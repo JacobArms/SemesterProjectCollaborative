@@ -10,8 +10,10 @@ public class Cheer {
     public Cheer (int x, int y, Resources res, int drawable){
         float screenRatioX = 1920f / x;
         float screenRatioY = 1080f/ y;
+        int width = (int)(975/screenRatioX);
+        int height =(int)(449/screenRatioY);
         cheer = BitmapFactory.decodeResource(res, drawable);
-        cheer = Bitmap.createScaledBitmap(cheer, 600, 800, false);
+        cheer = Bitmap.createScaledBitmap(cheer, width, height, false);
     }
 
 }
