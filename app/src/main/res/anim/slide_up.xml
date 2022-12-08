@@ -8,7 +8,6 @@
         android:fromYScale="1"
         android:toXScale="1"
         android:toYScale="0"
-
         />
 
 </set>
