@@ -214,7 +214,7 @@ public class GameView extends SurfaceView implements Runnable{
                 if (ob1.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 1");
                     score+=10*diff;
-                    hitOnce1 = false;
+                    ob1.setY(0-ob3.height);
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 1");
                     hitBarrel = true;
@@ -229,7 +229,7 @@ public class GameView extends SurfaceView implements Runnable{
                 if (ob2.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 2");
                     score+=10*diff;
-                    hitOnce2 = false;
+                    ob2.setY(0-ob3.height);
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 2");
                     hitBarrel = true;
@@ -243,7 +243,7 @@ public class GameView extends SurfaceView implements Runnable{
                 if (ob3.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 3");
                     score+=10*diff;
-                    hitOnce3 = false;
+                    ob3.setY(0-ob3.height);
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 3");
                     hitBarrel = true;
@@ -257,7 +257,7 @@ public class GameView extends SurfaceView implements Runnable{
                 if (ob4.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 4");
                     score+=10*diff;
-                    hitOnce4 = false;
+                    ob4.setY(0-ob3.height);
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 4");
                     hitBarrel = true;
@@ -271,7 +271,7 @@ public class GameView extends SurfaceView implements Runnable{
                 if (ob5.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 5");
                     score+=10*diff;
-                    hitOnce5 = false;
+                    ob5.setY(0-ob3.height);
                 }else{
                     Log.println(Log.ASSERT, "hits", "hit 5");
                     hitBarrel = true;
