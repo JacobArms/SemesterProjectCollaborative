@@ -82,7 +82,10 @@ public class GameView extends SurfaceView implements Runnable{
         four = (speed*(Math.random()+1))/(screenRatioY*2);
         five = (speed*(Math.random()+1))/(screenRatioY*2);
         screenRatioX = 1920f / screenX;
+        Log.println(Log.ASSERT, "screen", screenRatioX + "");
         screenRatioY = 1080f / screenY;
+        Log.println(Log.ASSERT, "screen", screenRatioY + "");
+        Log.println(Log.ASSERT, "hits", "banana collected 1");
         background1= new Background(screenX, screenY, getResources());
         background2= new Background(screenX, screenY, getResources());
         endScreen = new EndScreen(screenX, screenY, getResources());
@@ -209,7 +212,7 @@ public class GameView extends SurfaceView implements Runnable{
 //
 //        }
 
-        if(ob1.y>=aiai.y&&hitOnce1&&ob1.y<aiai.y+aiai.height){
+        if(ob1.y>=aiai.y-20&&hitOnce1&&ob1.y<aiai.y+aiai.height){
             if(charPos==ob1.getObstaclePos()){
                 if (ob1.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 1");
@@ -226,7 +229,7 @@ public class GameView extends SurfaceView implements Runnable{
                 }
             }
         }
-        if(ob2.y>=aiai.y&&hitOnce2&&ob2.y<aiai.y+aiai.height){
+        if(ob2.y>=aiai.y-20&&hitOnce2&&ob2.y<aiai.y+aiai.height){
             if(charPos==ob2.getObstaclePos()){
                 if (ob2.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 2");
@@ -241,7 +244,7 @@ public class GameView extends SurfaceView implements Runnable{
                 }
             }
         }
-        if(ob3.y>=aiai.y&&hitOnce3&&ob3.y<aiai.y+aiai.height){
+        if(ob3.y>=aiai.y-20&&hitOnce3&&ob3.y<aiai.y+aiai.height){
             if(charPos==ob3.getObstaclePos()){
                 if (ob3.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 3");
@@ -256,7 +259,7 @@ public class GameView extends SurfaceView implements Runnable{
                 }
             }
         }
-        if(ob4.y>=aiai.y&&hitOnce4&&ob4.y<aiai.y+aiai.height){
+        if(ob4.y>=aiai.y-20&&hitOnce4&&ob4.y<aiai.y+aiai.height){
             if(charPos==ob4.getObstaclePos()){
                 if (ob4.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 4");
@@ -271,7 +274,7 @@ public class GameView extends SurfaceView implements Runnable{
                 }
             }
         }
-        if(ob5.y>=aiai.y&&hitOnce5&&ob5.y<aiai.y+aiai.height){
+        if(ob5.y>=aiai.y-20&&hitOnce5&&ob5.y<aiai.y+aiai.height){
             if(charPos==ob5.getObstaclePos()){
                 if (ob5.getType()==3) {
                     Log.println(Log.ASSERT, "hits", "banana collected 5");
@@ -339,17 +342,17 @@ public class GameView extends SurfaceView implements Runnable{
                 }
 
                 if(score>=1000){
-                    paint.setTextSize(100);
+                    paint.setTextSize(177/screenRatioX);
                     canvas.drawText("Score:" + score, screenX/2-447/screenRatioX, screenY/2+230/screenRatioY, paint);
                 }else if (score==0){
-                    paint.setTextSize(128);
+                    paint.setTextSize(227/screenRatioX);
                     canvas.drawText("Score:" + score, screenX/2-345/screenRatioX, screenY/2+230/screenRatioY, paint);
                 }else if (score>=100){
-                    paint.setTextSize(108);
+                    paint.setTextSize(192/screenRatioX);
                     canvas.drawText("Score:" + score, screenX/2-447/screenRatioX, screenY/2+230/screenRatioY, paint);
 
                 }else{
-                    paint.setTextSize(128);
+                    paint.setTextSize(227/screenRatioX);
                     canvas.drawText("Score:" + score, screenX/2-420/screenRatioX, screenY/2+230/screenRatioY, paint);
                 }
             }
@@ -446,8 +449,8 @@ public class GameView extends SurfaceView implements Runnable{
                         }
                     }
                 }else{
-                    if(event.getX() > 208 && event.getX() < screenX-208){
-                        if (event.getY()<screenY-250&&event.getY()>screenY-450) {
+                    if(event.getX() > 369/screenRatioX && event.getX() < screenX-(369/screenRatioX)){
+                        if (event.getY()<screenY-(136.5/screenRatioY)&&event.getY()>screenY-(246/screenRatioY)) {
                             alive = true;
                             resetGame();
                         }
